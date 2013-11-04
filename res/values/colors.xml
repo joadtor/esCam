@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="bgColor">#ffffffff</color>
+    <color name="textColor">#ff336666</color>
+    <color name="title">#ff336666</color>
+    <color name="titleTextColor">#ffffffff</color>
+    <color name="optionsBarColor">#444444</color>
+    <color name="selectionOptionsTextColor">#DDDDDD</color>
+    <color name="LinesColor">#ffcc6600</color>
+    <color name="EllipsesColor">#ff336666</color>
+</resources>

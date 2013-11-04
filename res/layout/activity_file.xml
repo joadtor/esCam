@@ -1,0 +1,111 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/newCamera"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:layout_gravity="fill_vertical|fill_horizontal"
+    android:background="@color/bgColor"
+    android:orientation="vertical"
+    tools:ignore="InefficientWeight,NestedWeights" >
+
+    <LinearLayout
+        android:id="@+id/title_bar"
+        style="@style/sTitleBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:ignore="UseCompoundDrawables" >
+
+        <ImageView
+            android:id="@+id/title_logo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="false"
+            android:longClickable="false"
+            android:src="@drawable/title_logo" />
+
+        <TextView
+            android:id="@+id/title_text"
+            style="@style/sTitleText"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_gravity="right"
+            android:clickable="false"
+            android:gravity="right|center_vertical" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/body"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="0"
+        android:orientation="vertical" >
+
+        <com.joadtor.escam.component.Selector
+            android:id="@+id/view_select"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_gravity="center"
+            android:layout_weight="1" />
+
+        <LinearLayout
+            android:id="@+id/options_bar"
+            style="@style/sOptionsBar"
+            android:layout_width="fill_parent"
+            android:layout_height="38dp"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center" >
+
+            <Button
+                android:id="@+id/inc_size"
+                style="@style/sSelectOpts"
+                android:layout_width="40dp"
+                android:layout_height="fill_parent"
+                android:layout_gravity="center"
+                android:layout_margin="3dp"
+                android:onClick="onClickMainMenu"
+                android:text="@string/increase" />
+
+            <Button
+                android:id="@+id/dec_size"
+                style="@style/sSelectOpts"
+                android:layout_width="40dp"
+                android:layout_height="fill_parent"
+                android:layout_gravity="center"
+                android:layout_margin="3dp"
+                android:onClick="onClickMainMenu"
+                android:text="@string/dec" />
+
+            <Button
+                android:id="@+id/ok_button"
+                style="@style/sSelectOpts"
+                android:layout_width="60dp"
+                android:layout_height="fill_parent"
+                android:layout_gravity="center"
+                android:layout_margin="3dp"
+                android:onClick="onClickMainMenu"
+                android:text="@string/ok_button" />
+
+            <Button
+                android:id="@+id/turn_90"
+                style="@style/sSelectOpts"
+                android:layout_width="40dp"
+                android:layout_height="fill_parent"
+                android:layout_margin="3dp"
+                android:onClick="onClickMainMenu"
+                android:text="@string/_90" />
+
+            <Button
+                android:id="@+id/turn_180"
+                style="@style/sSelectOpts"
+                android:layout_width="40dp"
+                android:layout_height="fill_parent"
+                android:layout_margin="3dp"
+                android:onClick="onClickMainMenu"
+                android:text="@string/_180" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

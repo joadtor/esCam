@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<lint>
+    <issue id="ContentDescription">
+        <ignore path="res/layout/activity_about.xml" />
+        <ignore path="res/layout/activity_file.xml" />
+        <ignore path="res/layout/activity_main.xml" />
+    </issue>
+    <issue id="SelectableText">
+        <ignore path="res/layout/activity_file.xml" />
+    </issue>
+    <issue id="UseCompoundDrawables">
+        <ignore path="res/layout/activity_about.xml" />
+        <ignore path="res/layout/activity_file.xml" />
+        <ignore path="res/layout/activity_main.xml" />
+    </issue>
+</lint>

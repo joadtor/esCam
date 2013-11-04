@@ -1,0 +1,24 @@
+<resources>
+
+    <string name="app_name">esCam</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="menu_settings">Settings</string>
+    <string name="title_activity_main">esCam</string>
+    <string name="newCamera_button">New from Camera</string>
+    <string name="button_from_camera">Imagen desde camara</string>
+    <string name="button_from_file">Imagen desde fichero</string>
+    <string name="menu_about">Acerca de</string>
+    <string name="title_activity_about">Acerca de</string>
+    <string name="title_activity_process">Procesamiento</string>
+    <string name="about_text">esCam 2013 - JOADTOR</string>
+    <string name="title_activity_file">File</string>
+    <string name="mainMenu">Menu</string>
+    <string name="abouttitle">About</string>
+    <string name="ok_button">OK</string>
+    <string name="increase">+</string>
+    <string name="dec">-</string>
+    <string name="_90">90</string>
+    <string name="_180">180</string>
+    <string name="ocv_text">OpenCV</string>
+
+</resources>
