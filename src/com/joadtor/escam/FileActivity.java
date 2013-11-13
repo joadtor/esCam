@@ -211,8 +211,14 @@ public class FileActivity extends Activity {
 	        
 	        bitmap = homographyCorrection(mBitmap, calculatePoints());
 	        
+	        // Load from SharedResources
+	        V_esCam gv = (V_esCam)getApplication();
+	        gv.setPerspective(bitmap);
 	        
-	        BitmapDrawable myBitmap = new BitmapDrawable(bitmap);
+	        Intent i = new Intent(getApplicationContext(), PerspectiveActivity.class);
+    		startActivity (i);	
+	        
+	       /* BitmapDrawable myBitmap = new BitmapDrawable(bitmap);
 
 			if(myBitmap != null){
 				selector = (Selector) findViewById(R.id.view_select);
@@ -224,7 +230,7 @@ public class FileActivity extends Activity {
 			// Hide edit tools
 			selector.disableEdit();
 			LinearLayout options_bar = (LinearLayout) findViewById(R.id.options_bar);
-	        options_bar.setVisibility(View.GONE);
+	        options_bar.setVisibility(View.GONE);*/
 			
 		} else if (id == R.id.turn_90) {
 			//selector.rotateBackground(90);

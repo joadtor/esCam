@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
 
     <string name="app_name">esCam</string>
@@ -20,5 +21,7 @@
     <string name="_90">90</string>
     <string name="_180">180</string>
     <string name="ocv_text">OpenCV</string>
+    <string name="title_activity_perspective">PerspectiveActivity</string>
+    <string name="action_settings">Settings</string>
 
 </resources>
