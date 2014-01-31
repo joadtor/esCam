@@ -15,6 +15,7 @@ import android.provider.MediaStore;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 public class HomeActivity extends Activity {
 	
@@ -91,7 +92,7 @@ protected void onActivityResult(int requestCode, int resultCode, Intent data) {
     	}
     	
     	if(resultCode == RESULT_OK && requestCode == FILE_REQUEST){ 	// else
-    		
+
     		Uri selectedImage = data.getData();
     		
     		Intent i = new Intent(getApplicationContext(), FileActivity.class);

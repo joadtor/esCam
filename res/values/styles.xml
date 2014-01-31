@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
 
     <style name="Theme.main" parent="android:Theme.Light">
         <item name="android:windowNoTitle">true</item>
@@ -11,10 +11,10 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_weight">1</item>
         <item name="android:gravity">center_horizontal</item>
-        <item name="android:textSize">@dimen/medium_text</item>
+        <item name="android:textSize">@dimen/large_text</item>
         <item name="android:textStyle">normal</item>
         <item name="android:textColor">@color/textColor</item>
-        <item name="android:background">@null</item>
+        <item name="android:background">@drawable/main_button_selection</item>
     </style>
     <style name="sSelectOpts">
         <item name="android:layout_gravity">center</item>
@@ -30,7 +30,7 @@
         <item name="android:layout_width">fill_parent</item>
         <item name="android:layout_height">@dimen/title_height</item>
         <item name="android:orientation">horizontal</item>
-        <item name="android:background">@color/title</item>
+        <item name="android:background">@drawable/title_bg</item>
     </style>
     <style name="sOptionsBar">
         <item name="android:layout_width">fill_parent</item>
@@ -51,4 +51,16 @@
         <item name="android:layout_marginRight">@dimen/title_margin_gap</item>
         <item name="android:textColor">@color/titleTextColor</item>
     </style>
+    
+    <style name="Animations" />
+
+	<style name="Animations.GrowFromBottom">
+		<item name="@android:windowEnterAnimation">@anim/grow_from_bottom</item>
+		<item name="@android:windowExitAnimation">@anim/shrink_from_top</item>
+	</style>
+	
+	<style name="Animations.GrowFromTop">
+		<item name="@android:windowEnterAnimation">@anim/grow_from_top</item>
+		<item name="@android:windowExitAnimation">@anim/shrink_from_bottom</item>
+	</style>
 </resources>

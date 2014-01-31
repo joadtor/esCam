@@ -1,36 +1,31 @@
 package com.joadtor.escam;
 
-import java.io.File;
-import java.io.FileInputStream;
-
 import org.opencv.android.OpenCVLoader;
-import org.opencv.android.Utils;
-import org.opencv.core.CvType;
-import org.opencv.core.Mat;
-import org.opencv.core.Size;
-import org.opencv.imgproc.Imgproc;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.database.Cursor;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Matrix;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.TextView;
+import android.widget.TableRow;
+import android.widget.Toast;
 
-import com.joadtor.escam.R;
+import com.joadtor.escam.component.BetterPopupWindow;
 import com.joadtor.escam.component.Selector;
 
 
@@ -75,6 +70,19 @@ public class PerspectiveActivity extends Activity {
 		selector.disableEdit();
 		LinearLayout options_bar = (LinearLayout) findViewById(R.id.options_bar);
         options_bar.setVisibility(View.GONE);
+        
+        
+        // Options
+        Button options = (Button) this.findViewById(R.id.options);
+        options.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				PopupWindow dw = new PopupWindow(v);
+				dw.setLayoutResource(R.layout.popup_perspective);
+				dw.showLikeQuickAction(0,20);
+			}
+		});
+        
     }
 
 
@@ -149,9 +157,65 @@ public class PerspectiveActivity extends Activity {
 		}
     }
 
+    public class PopupWindow extends BetterPopupWindow implements OnClickListener {
+
+    	public PopupWindow(View anchor) {
+    		super(anchor);
+    	}
+
+    	public void setLayoutResource(int resource){
+    		// inflate layout
+    		LayoutInflater inflater =
+    				(LayoutInflater) this.anchor.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+    		
+    		ViewGroup root = (ViewGroup) inflater.inflate(resource, null);
+
+    		// setup button events
+    		for(int i = 0, icount = root.getChildCount() ; i < icount ; i++) {
+    			View v = root.getChildAt(i);
+
+    			if(v instanceof TableRow) {
+    				TableRow row = (TableRow) v;
+
+    				for(int j = 0, jcount = row.getChildCount() ; j < jcount ; j++) {
+    					View item = row.getChildAt(j);
+    					if(item instanceof Button) {
+    						Button b = (Button) item;
+    						b.setOnClickListener(this);
+    					}
+    				}
+    			}
+    		}
+
+    		// set the inflated view as what we want to display
+    		this.setContentView(root);
+    	}
+    	@Override
+    	public void onClick(View v) {
+    		// we'll just display a simple toast on a button click
+    		Button b = (Button) v;
+    		if(b.getId() == R.id.one) 
+    			setImageFilter("primer");
+    		else if(b.getId() == R.id.two) 
+    			setImageFilter("segundo");
+    		else if(b.getId() == R.id.three) 
+    			setImageFilter("tercero");
+    		else if(b.getId() == R.id.four) 
+    			setImageFilter("cuarto");
+    		else if(b.getId() == R.id.five) 
+    			setImageFilter("quinto");
+    		
+    		this.dismiss();
+    	}
+    }
 
 	
-
+    public void setImageFilter(String text)
+    {
+    	String text_out = "Se ha pulsado el " + text + " botón.";
+    	Toast.makeText(getApplicationContext(), text_out, Toast.LENGTH_SHORT).show();
+    }
 
 }
+
 
