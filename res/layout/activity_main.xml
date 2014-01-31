@@ -41,16 +41,22 @@
             style="@style/sButton"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:drawableTop="@drawable/img1"
+            android:drawableTop="@drawable/icon_menu_cam"
             android:onClick="onClickMainMenu"
             android:text="@string/button_from_camera" />
+
+        <ImageView
+            android:id="@+id/imageView1"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/separation_line" />
 
         <Button
             android:id="@+id/fileButton"
             style="@style/sButton"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:drawableTop="@drawable/img1"
+            android:drawableTop="@drawable/icon_menu_sd"
             android:onClick="onClickMainMenu"
             android:text="@string/button_from_file" />
     </LinearLayout>

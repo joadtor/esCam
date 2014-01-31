@@ -23,5 +23,13 @@
     <string name="ocv_text">OpenCV</string>
     <string name="title_activity_perspective">PerspectiveActivity</string>
     <string name="action_settings">Settings</string>
+    <string-array name="interpolation">
+        <item >Area</item>
+        <item >Cubic</item>
+        <item >Lanczos</item>
+        <item >Linear</item>
+        <item >Nearest</item>
+    </string-array>
+        <string name="options">opt</string>
 
 </resources>

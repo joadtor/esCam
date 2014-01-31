@@ -20,17 +20,30 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:clickable="false"
+            android:contentDescription="TODO"
             android:longClickable="false"
-            android:src="@drawable/title_logo" />
+            android:src="@drawable/title_logo"
+            tools:ignore="HardcodedText,ContentDescription" />
 
         <TextView
             android:id="@+id/title_text"
             style="@style/sTitleText"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_gravity="right"
-            android:clickable="false"
-            android:gravity="right|center_vertical" />
+            android:layout_weight="1"
+            android:clickable="false" />
+
+        <Button
+            android:id="@+id/options"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="6dp"
+            android:background="@null"
+            android:drawableTop="@drawable/settings_icon_anim"
+            android:gravity="right|center_vertical"
+            android:paddingTop="2dp" />
 
     </LinearLayout>
 
