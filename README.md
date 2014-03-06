@@ -1,5 +1,5 @@
-#ESCAM
-EsCam is a document enhacement application. This application is under developement, and it is part of the final degree project of Jose Luís Adelantado (Computer Engineering), supervised by Joan Pastor and María José Castro.
+#EsCam
+EsCam is a document enhacement application. This application is still under developement, and it takes part of the final engineering project of Jose Luís Adelantado (Computer Science), supervised by [Joan Pastor](https://github.com/joapaspe) and María José Castro.
 
 
 ## Requeriments
@@ -18,6 +18,8 @@ Install the correct api:
 Configure the android device (Android Virtural or Mobile phone), and run the application within Eclipse.
 
 ## Install OpenCV on the Virtual Device Manager
+
+**Update: EsCam works now with installing OpenCV on the device as it is provided within the application.**
 
 You can follow the steps in this (tutorial)[http://docs.opencv.org/doc/tutorials/introduction/android_binary_package/O4A_SDK.html]
 
