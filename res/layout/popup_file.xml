@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content" >
+
+	<TableRow>
+		<Button
+			android:layout_height="43dp"
+			android:layout_weight="1"
+			android:id="@+id/one"
+			android:drawableTop="@drawable/icon_alg_test"
+			android:background="@null"
+			android:layout_marginRight="5dp"
+			android:layout_marginLeft="5dp"
+			android:minWidth="30dp"
+			android:minHeight="30dp"
+			 />
+		<Button
+			android:layout_height="43dp"
+			android:layout_weight="1"
+			android:id="@+id/two"
+			android:drawableTop="@drawable/icon_alg_test"
+			android:background="@null"
+			android:layout_marginRight="5dp"
+			android:layout_marginLeft="5dp"
+			android:minWidth="30dp"
+			android:minHeight="30dp"
+			 />
+		<Button
+			android:layout_height="43dp"
+			android:layout_weight="1"
+			android:id="@+id/three"
+			android:drawableTop="@drawable/icon_alg_test"
+			android:background="@null"
+			android:layout_marginRight="5dp"
+			android:layout_marginLeft="5dp"
+			android:minWidth="30dp"
+			android:minHeight="30dp"
+			 />
+		<Button
+			android:layout_height="43dp"
+			android:layout_weight="1"
+			android:id="@+id/four"
+			android:drawableTop="@drawable/icon_alg_test"
+			android:background="@null"
+			android:layout_marginRight="5dp"
+			android:layout_marginLeft="5dp"
+			android:minWidth="30dp"
+			android:minHeight="30dp"
+			 />
+	</TableRow>
+	<TableRow android:layout_marginTop="10dp"
+	    android:paddingLeft="25dp"
+	    android:paddingRight="25dp" >
+
+		<Button
+			android:layout_height="43dp"
+			android:layout_weight="1"
+			android:id="@+id/five"
+			android:drawableTop="@drawable/icon_alg_test"
+			android:background="@null"
+			android:layout_marginRight="5dp"
+			android:layout_marginLeft="5dp"
+			android:minWidth="30dp"
+			android:minHeight="30dp"
+			 />
+		<Button
+			android:layout_height="43dp"
+			android:layout_weight="1"
+			android:id="@+id/six"
+			android:drawableTop="@drawable/icon_alg_test"
+			android:background="@null"
+			android:layout_marginRight="5dp"
+			android:layout_marginLeft="5dp"
+			android:minWidth="30dp"
+			android:minHeight="30dp"
+			 />
+		<Button
+			android:layout_height="43dp"
+			android:layout_weight="1"
+			android:id="@+id/seven"
+			android:drawableTop="@drawable/icon_alg_test"
+			android:background="@null"
+			android:layout_marginRight="5dp"
+			android:layout_marginLeft="5dp"
+			android:minWidth="30dp"
+			android:minHeight="30dp"
+			 />
+
+	</TableRow>
+</TableLayout>

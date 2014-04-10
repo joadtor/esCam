@@ -50,6 +50,12 @@
             android:label="@string/title_activity_perspective"
             android:screenOrientation="portrait" >
         </activity>
+        <activity
+            android:name="com.joadtor.escam.SaveActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:label="@string/title_activity_save"
+            android:screenOrientation="portrait" >
+        </activity>
     </application>
 
 </manifest>

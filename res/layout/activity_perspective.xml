@@ -71,26 +71,6 @@
             android:gravity="center" >
 
             <Button
-                android:id="@+id/inc_size"
-                style="@style/sSelectOpts"
-                android:layout_width="40dp"
-                android:layout_height="fill_parent"
-                android:layout_gravity="center"
-                android:layout_margin="3dp"
-                android:onClick="onClickMainMenu"
-                android:text="@string/increase" />
-
-            <Button
-                android:id="@+id/dec_size"
-                style="@style/sSelectOpts"
-                android:layout_width="40dp"
-                android:layout_height="fill_parent"
-                android:layout_gravity="center"
-                android:layout_margin="3dp"
-                android:onClick="onClickMainMenu"
-                android:text="@string/dec" />
-
-            <Button
                 android:id="@+id/ok_button"
                 style="@style/sSelectOpts"
                 android:layout_width="60dp"
@@ -99,24 +79,6 @@
                 android:layout_margin="3dp"
                 android:onClick="onClickMainMenu"
                 android:text="@string/ok_button" />
-
-            <Button
-                android:id="@+id/turn_90"
-                style="@style/sSelectOpts"
-                android:layout_width="40dp"
-                android:layout_height="fill_parent"
-                android:layout_margin="3dp"
-                android:onClick="onClickMainMenu"
-                android:text="@string/_90" />
-
-            <Button
-                android:id="@+id/turn_180"
-                style="@style/sSelectOpts"
-                android:layout_width="40dp"
-                android:layout_height="fill_parent"
-                android:layout_margin="3dp"
-                android:onClick="onClickMainMenu"
-                android:text="@string/_180" />
 
         </LinearLayout>
     </LinearLayout>

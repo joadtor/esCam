@@ -21,6 +21,10 @@ public class HomeActivity extends Activity {
 	
 	private static final int FILE_REQUEST = 1;
 	private static final int CAMERA_REQUEST = 1337;
+	private static final int PROCESS_OK = 1313;
+	
+	private static final int FILE_OK = 95;
+	private static final int FILE_KO = 59;
 	
 	private Uri mImgUri;
 
@@ -88,7 +92,7 @@ protected void onActivityResult(int requestCode, int resultCode, Intent data) {
     		Intent i = new Intent(getApplicationContext(), FileActivity.class);
     		i.putExtra("source", true);
     		i.putExtra("URI",mImgUri);
-    		startActivity (i);				
+    		startActivityForResult(i, PROCESS_OK);				
     	}
     	
     	if(resultCode == RESULT_OK && requestCode == FILE_REQUEST){ 	// else
@@ -98,7 +102,10 @@ protected void onActivityResult(int requestCode, int resultCode, Intent data) {
     		Intent i = new Intent(getApplicationContext(), FileActivity.class);
     		i.putExtra("source", false);
     		i.putExtra("URI", selectedImage);
-    		startActivity (i);				
+    		startActivityForResult(i, PROCESS_OK);				
+    	}
+    	if(resultCode == FILE_OK && requestCode == PROCESS_OK){ 		
+    		Toast.makeText(getApplicationContext(), getResources().getString(R.string.image_saved), Toast.LENGTH_LONG).show();
     	}
     }
 }

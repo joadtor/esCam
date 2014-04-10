@@ -1,6 +1,10 @@
 package com.joadtor.escam;
 
 import org.opencv.android.OpenCVLoader;
+import org.opencv.android.Utils;
+import org.opencv.core.Mat;
+import org.opencv.core.Size;
+import org.opencv.imgproc.Imgproc;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -32,6 +36,14 @@ import com.joadtor.escam.component.Selector;
 public class PerspectiveActivity extends Activity {
 	
 	private static final int IMAGE_MAX_SIZE = 1920;
+	private static final int PROCESS_OK = 1313;
+	
+	private static final int FILE_OK = 95;
+	private static final int FILE_KO = 59;
+	
+	private static final int NO_FILTER = 13000;
+	private static final int BINARIZE = 13001;
+	private static final int BIN_TOZERO = 13002;
 	
 	private Uri mImgUri;
 	private Bitmap mBitmap;
@@ -53,6 +65,8 @@ public class PerspectiveActivity extends Activity {
         // Get from SharedResources
         V_esCam gv = (V_esCam)getApplication();
         mBitmap = gv.getPerspective();
+        gv.setFilter(mBitmap);
+        
         BitmapDrawable myBitmap = new BitmapDrawable(mBitmap);
 
         
@@ -68,8 +82,7 @@ public class PerspectiveActivity extends Activity {
     	
 
 		selector.disableEdit();
-		LinearLayout options_bar = (LinearLayout) findViewById(R.id.options_bar);
-        options_bar.setVisibility(View.GONE);
+
         
         
         // Options
@@ -79,7 +92,7 @@ public class PerspectiveActivity extends Activity {
 			public void onClick(View v) {
 				PopupWindow dw = new PopupWindow(v);
 				dw.setLayoutResource(R.layout.popup_perspective);
-				dw.showLikeQuickAction(0,20);
+				dw.showLikeQuickAction(0,10);
 			}
 		});
         
@@ -113,6 +126,17 @@ public class PerspectiveActivity extends Activity {
     
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    	
+    	if(resultCode == FILE_OK && requestCode == PROCESS_OK){ 		
+    		Intent i = new Intent();
+    	    setResult(FILE_OK, i);
+    	    finish();		
+    	}
+    	else if(resultCode == FILE_KO && requestCode == PROCESS_OK){ 		
+    		Intent i = new Intent();
+    	    setResult(FILE_KO, i);
+    	    finish();			
+    	}
 
     }
     
@@ -120,41 +144,14 @@ public class PerspectiveActivity extends Activity {
 	public void onClickMainMenu (View v)
     {
     	int id = v.getId ();
-    	int level;
+
     	
-    	Selector selector = (Selector) findViewById(R.id.view_select);
-    	
-    	Button button_i;
-    	Button button_d;
-    	
-    	if (id == R.id.inc_size) {
-			level = selector.increaseStrokeSize();
-			button_i = (Button) findViewById(R.id.inc_size);
-			button_d = (Button) findViewById(R.id.dec_size);
-			if(level == 7)
-    			button_i.setEnabled(false);
-    		else button_d.setEnabled(true);
-		} else if (id == R.id.dec_size) {
-			level = selector.decreaseStrokeSize();
-			button_i = (Button) findViewById(R.id.inc_size);
-			button_d = (Button) findViewById(R.id.dec_size);
-			if(level == 1)
-    			button_d.setEnabled(false);
-    		else button_i.setEnabled(true);
-		} else if (id == R.id.ok_button) {
+    	if (id == R.id.ok_button) {
 			
-	        
+			Intent i = new Intent(getApplicationContext(), SaveActivity.class);
+    		startActivityForResult(i, PROCESS_OK);
 			
-		} else if (id == R.id.turn_90) {
-			//selector.rotateBackground(90);
-			//rotateImage(90);
-			if(mTurned) mTurned=false;
-			else mTurned = true;
-		} else if (id == R.id.turn_180) {
-			//selector.rotateBackground(180);
-			//rotateImage(180);
-		} else {
-		}
+		} 
     }
 
     public class PopupWindow extends BetterPopupWindow implements OnClickListener {
@@ -195,25 +192,113 @@ public class PerspectiveActivity extends Activity {
     		// we'll just display a simple toast on a button click
     		Button b = (Button) v;
     		if(b.getId() == R.id.one) 
-    			setImageFilter("primer");
+    			setImageFilter(NO_FILTER);
     		else if(b.getId() == R.id.two) 
-    			setImageFilter("segundo");
+    			setImageFilter(BINARIZE);
     		else if(b.getId() == R.id.three) 
-    			setImageFilter("tercero");
-    		else if(b.getId() == R.id.four) 
-    			setImageFilter("cuarto");
-    		else if(b.getId() == R.id.five) 
-    			setImageFilter("quinto");
+    			setImageFilter(BIN_TOZERO);
     		
     		this.dismiss();
     	}
     }
 
 	
-    public void setImageFilter(String text)
+    public void setImageFilter(int filterID)
     {
-    	String text_out = "Se ha pulsado el " + text + " botón.";
-    	Toast.makeText(getApplicationContext(), text_out, Toast.LENGTH_SHORT).show();
+    	if (filterID == NO_FILTER){
+        	Toast.makeText(getApplicationContext(), getResources().getString(R.string.no_filter), Toast.LENGTH_SHORT).show();
+        	    		
+    		// Get from SharedResources
+            V_esCam gv = (V_esCam)getApplication();
+            mBitmap = gv.getPerspective();
+            BitmapDrawable myBitmap = new BitmapDrawable(mBitmap);
+            
+    		gv.setFilter(mBitmap);
+       
+            Selector selector = (Selector) findViewById(R.id.view_select);
+            
+    		if(myBitmap != null){
+    			selector = (Selector) findViewById(R.id.view_select);
+    			selector.setBackgroundDrawable(myBitmap);
+    			selector.setEllipseColor(getResources().getColor(R.color.EllipsesColor));
+    			selector.setLineColor(getResources().getColor(R.color.LinesColor));
+    		}
+    	}
+    	if (filterID == BINARIZE){
+    		Toast.makeText(getApplicationContext(), getResources().getString(R.string.binarize_filter), Toast.LENGTH_SHORT).show();
+    		
+    		// Get from SharedResources
+            V_esCam gv = (V_esCam)getApplication();
+            mBitmap = gv.getPerspective();
+    		
+    		// Creating a Mat from a Bitmap
+    		Mat img_src = new Mat();
+    		Utils.bitmapToMat(mBitmap, img_src);
+    		
+    		// Greyscale
+    		Imgproc.cvtColor(img_src, img_src, Imgproc.COLOR_RGB2GRAY);
+
+    		
+    		// Binarizing
+    		Imgproc.threshold(img_src, img_src, 0, 255, Imgproc.THRESH_BINARY | Imgproc.THRESH_OTSU);
+    		
+    		// Creating a Bitmap from a Mat     
+    		mBitmap = Bitmap.createBitmap(img_src.cols(),  img_src.rows(), Bitmap.Config.ARGB_8888); 
+    		Utils.matToBitmap(img_src, mBitmap);
+    		
+    		BitmapDrawable myBitmap = new BitmapDrawable(mBitmap);
+    		
+    		gv.setFilter(mBitmap);
+    		
+    		Selector selector = (Selector) findViewById(R.id.view_select);
+            
+    		if(myBitmap != null){
+    			selector = (Selector) findViewById(R.id.view_select);
+    			selector.setBackgroundDrawable(myBitmap);
+    			selector.setEllipseColor(getResources().getColor(R.color.EllipsesColor));
+    			selector.setLineColor(getResources().getColor(R.color.LinesColor));
+    		}
+    		
+    		
+    	}
+    	if (filterID == BIN_TOZERO){
+    		Toast.makeText(getApplicationContext(), getResources().getString(R.string.tozero_filter), Toast.LENGTH_SHORT).show();
+    		
+    		// Get from SharedResources
+            V_esCam gv = (V_esCam)getApplication();
+            mBitmap = gv.getPerspective();
+    		
+    		// Creating a Mat from a Bitmap
+    		Mat img_src = new Mat();
+    		Utils.bitmapToMat(mBitmap, img_src);
+    		    		
+    		// Greyscale
+    		Imgproc.cvtColor(img_src, img_src, Imgproc.COLOR_RGB2GRAY);
+    		
+    		// Binarizing
+    		Imgproc.threshold(img_src, img_src, 0, 255, Imgproc.THRESH_TOZERO | Imgproc.THRESH_OTSU);
+    		
+    		// Creating a Bitmap from a Mat     
+    		mBitmap = Bitmap.createBitmap(img_src.cols(),  img_src.rows(), Bitmap.Config.ARGB_8888); 
+    		Utils.matToBitmap(img_src, mBitmap);
+    		
+    		BitmapDrawable myBitmap = new BitmapDrawable(mBitmap);
+    		
+    		gv.setFilter(mBitmap);
+    		
+    		Selector selector = (Selector) findViewById(R.id.view_select);
+            
+    		if(myBitmap != null){
+    			selector = (Selector) findViewById(R.id.view_select);
+    			selector.setBackgroundDrawable(myBitmap);
+    			selector.setEllipseColor(getResources().getColor(R.color.EllipsesColor));
+    			selector.setLineColor(getResources().getColor(R.color.LinesColor));
+    		}
+    		
+    		
+    	}
+
+    	
     }
 
 }

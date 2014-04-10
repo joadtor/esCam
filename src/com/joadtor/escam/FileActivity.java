@@ -12,6 +12,7 @@ import org.opencv.imgproc.Imgproc;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
@@ -24,23 +25,34 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.TableRow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.joadtor.escam.R;
+import com.joadtor.escam.PerspectiveActivity.PopupWindow;
+import com.joadtor.escam.component.BetterPopupWindow;
 import com.joadtor.escam.component.Selector;
 
 
 public class FileActivity extends Activity {
 	
 	private static final int IMAGE_MAX_SIZE = 1920;
+	private static final int PROCESS_OK = 1313;
+	
+	private static final int FILE_OK = 95;
+	private static final int FILE_KO = 59;
 	
 	private Uri mImgUri;
 	private Bitmap mBitmap;
-	private Boolean mTurned = false;
+	private int inter_alg = Imgproc.INTER_LINEAR;
 	
 	static {
         if (!OpenCVLoader.initDebug())
@@ -58,28 +70,34 @@ public class FileActivity extends Activity {
         
         if(bundle.getBoolean("source")) {
         	// Camera code
-        	
-        	((TextView)findViewById(R.id.title_text)).setText("Camera");
-        	
+        	     	
         	mImgUri = (Uri) bundle.getParcelable("URI");
         	
 			loadBackground(new  File(mImgUri.getPath()));
         	
-        	//finishActivity(CAMERA_REQUEST);
         }
         else { 
         	// File code
-        	
-        	((TextView)findViewById(R.id.title_text)).setText("File");
-        	
+        	        	
         	mImgUri = (Uri) bundle.getParcelable("URI");
         	
         	String FilePath = getRealPathFromURI(mImgUri);
 			
 			loadBackground(new  File(FilePath));
         	
-			//finishActivity(FILE_REQUEST);
-        }        
+        }      
+        
+
+        // Options
+        Button options = (Button) this.findViewById(R.id.options);
+        options.setOnClickListener(new View.OnClickListener() {
+        	@Override
+        	public void onClick(View v) {
+        		PopupWindow dw = new PopupWindow(v);
+        		dw.setLayoutResource(R.layout.popup_file);
+        		dw.showLikeQuickAction(0,10);
+        	}
+        });
     }
 
 
@@ -112,6 +130,9 @@ public class FileActivity extends Activity {
 				selector.setLineColor(getResources().getColor(R.color.LinesColor));
 			}
 
+		}
+		else {
+			finish();
 		}
 	}
     
@@ -178,6 +199,16 @@ public class FileActivity extends Activity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
+    	if(resultCode == FILE_OK && requestCode == PROCESS_OK){ 		
+    		Intent i = new Intent();
+    	    setResult(FILE_OK, i);
+    	    finish();		
+    	}
+    	else if(resultCode == FILE_KO && requestCode == PROCESS_OK){ 		
+    		Intent i = new Intent();
+    	    setResult(FILE_KO, i);
+    	    finish();			
+    	}
     }
     
     @SuppressLint("CutPasteId")
@@ -216,29 +247,15 @@ public class FileActivity extends Activity {
 	        gv.setPerspective(bitmap);
 	        
 	        Intent i = new Intent(getApplicationContext(), PerspectiveActivity.class);
-    		startActivity (i);	
+    		startActivityForResult(i, PROCESS_OK);	
 	        
-	       /* BitmapDrawable myBitmap = new BitmapDrawable(bitmap);
-
-			if(myBitmap != null){
-				selector = (Selector) findViewById(R.id.view_select);
-				selector.setBackgroundDrawable(myBitmap);
-				selector.setEllipseColor(getResources().getColor(R.color.EllipsesColor));
-				selector.setLineColor(getResources().getColor(R.color.LinesColor));
-			}
-			
-			// Hide edit tools
-			selector.disableEdit();
-			LinearLayout options_bar = (LinearLayout) findViewById(R.id.options_bar);
-	        options_bar.setVisibility(View.GONE);*/
+	     
 			
 		} else if (id == R.id.turn_90) {
-			//selector.rotateBackground(90);
+
 			rotateImage(90);
-			if(mTurned) mTurned=false;
-			else mTurned = true;
 		} else if (id == R.id.turn_180) {
-			//selector.rotateBackground(180);
+
 			rotateImage(180);
 		} else {
 		}
@@ -283,7 +300,7 @@ public class FileActivity extends Activity {
 		Size img_size = new Size((double)cvmat.width(),(double)cvmat.height());
 		Mat img_result = new Mat(img_size,cvmat.type());
 		
-		Imgproc.warpPerspective(cvmat, img_result, perspective, img_size);
+		Imgproc.warpPerspective(cvmat, img_result, perspective, img_size, inter_alg);
 		
 		// Creating a Bitmap from a Mat     
 		Bitmap bdst = Bitmap.createBitmap(img_result.cols(),  img_result.rows(), Bitmap.Config.ARGB_8888); 
@@ -321,6 +338,78 @@ public class FileActivity extends Activity {
 		
 		return list;
 	}
+	
+	public class PopupWindow extends BetterPopupWindow implements OnClickListener {
+
+    	public PopupWindow(View anchor) {
+    		super(anchor);
+    	}
+
+    	public void setLayoutResource(int resource){
+    		// inflate layout
+    		LayoutInflater inflater =
+    				(LayoutInflater) this.anchor.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+    		
+    		ViewGroup root = (ViewGroup) inflater.inflate(resource, null);
+
+    		// setup button events
+    		for(int i = 0, icount = root.getChildCount() ; i < icount ; i++) {
+    			View v = root.getChildAt(i);
+
+    			if(v instanceof TableRow) {
+    				TableRow row = (TableRow) v;
+
+    				for(int j = 0, jcount = row.getChildCount() ; j < jcount ; j++) {
+    					View item = row.getChildAt(j);
+    					if(item instanceof Button) {
+    						Button b = (Button) item;
+    						b.setOnClickListener(this);
+    					}
+    				}
+    			}
+    		}
+
+    		// set the inflated view as what we want to display
+    		this.setContentView(root);
+    	}
+    	@Override
+    	public void onClick(View v) {
+    		// we'll just display a simple toast on a button click
+    		Button b = (Button) v;
+    		if(b.getId() == R.id.one) {
+    			Toast.makeText(getApplicationContext(), getResources().getString(R.string.inter_area), Toast.LENGTH_SHORT).show();
+    			inter_alg = Imgproc.INTER_AREA;
+    		}
+    		else if(b.getId() == R.id.two) {
+    			Toast.makeText(getApplicationContext(), getResources().getString(R.string.inter_bits2), Toast.LENGTH_SHORT).show();
+    			inter_alg = Imgproc.INTER_BITS2;
+    		}
+    		else if(b.getId() == R.id.three) {
+    			Toast.makeText(getApplicationContext(), getResources().getString(R.string.inter_cubic), Toast.LENGTH_SHORT).show();
+    			inter_alg = Imgproc.INTER_CUBIC;
+    		}
+    		else if(b.getId() == R.id.four) {
+    			Toast.makeText(getApplicationContext(), getResources().getString(R.string.inter_lanczos4), Toast.LENGTH_SHORT).show();
+    			inter_alg = Imgproc.INTER_LANCZOS4;
+    		}
+    		else if(b.getId() == R.id.five) {
+    			Toast.makeText(getApplicationContext(), getResources().getString(R.string.inter_linear), Toast.LENGTH_SHORT).show();
+    			inter_alg = Imgproc.INTER_LINEAR;
+    		}
+    		else if(b.getId() == R.id.six) {
+    			Toast.makeText(getApplicationContext(), getResources().getString(R.string.inter_max), Toast.LENGTH_SHORT).show();
+    			inter_alg = Imgproc.INTER_MAX;
+    		}
+    		else if(b.getId() == R.id.seven) {
+    			Toast.makeText(getApplicationContext(), getResources().getString(R.string.inter_nearest), Toast.LENGTH_SHORT).show();
+    			inter_alg = Imgproc.INTER_NEAREST;
+    		}
+    		
+    		
+    		this.dismiss();
+    	}
+    }
+
 
 
 }

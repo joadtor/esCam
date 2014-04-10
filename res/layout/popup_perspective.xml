@@ -37,27 +37,5 @@
 			android:minWidth="30dp"
 			android:minHeight="30dp"
 			 />
-		<Button
-			android:layout_height="43dp"
-			android:layout_weight="1"
-			android:id="@+id/four"
-			android:drawableTop="@drawable/icon_alg_test"
-			android:background="@null"
-			android:layout_marginRight="5dp"
-			android:layout_marginLeft="5dp"
-			android:minWidth="30dp"
-			android:minHeight="30dp"
-			 />
-		<Button
-			android:layout_height="43dp"
-			android:layout_weight="1"
-			android:id="@+id/five"
-			android:drawableTop="@drawable/icon_alg_test"
-			android:background="@null"
-			android:layout_marginRight="5dp"
-			android:layout_marginLeft="5dp"
-			android:minWidth="30dp"
-			android:minHeight="30dp"
-			 />
 	</TableRow>
 </TableLayout>

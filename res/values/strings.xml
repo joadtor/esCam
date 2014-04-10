@@ -11,6 +11,7 @@
     <string name="menu_about">Acerca de</string>
     <string name="title_activity_about">Acerca de</string>
     <string name="title_activity_process">Procesamiento</string>
+    <string name="title_activity_save">Guardado</string>
     <string name="about_text">esCam 2013 - JOADTOR</string>
     <string name="title_activity_file">File</string>
     <string name="mainMenu">Menu</string>
@@ -23,13 +24,18 @@
     <string name="ocv_text">OpenCV</string>
     <string name="title_activity_perspective">PerspectiveActivity</string>
     <string name="action_settings">Settings</string>
-    <string-array name="interpolation">
-        <item >Area</item>
-        <item >Cubic</item>
-        <item >Lanczos</item>
-        <item >Linear</item>
-        <item >Nearest</item>
-    </string-array>
-        <string name="options">opt</string>
+    <string name="options">opt</string>
+    <string name="no_filter">Imagen sin filtro.</string>
+    <string name="binarize_filter">Imagen con filtro de binarizado.</string>
+    <string name="tozero_filter">Imagen con filtro de binarizado con máscara.</string>
+    <string name="inter_area">Interpolación de Área.</string>
+    <string name="inter_bits2">Interpolación de Bits2.</string>
+    <string name="inter_cubic">Interpolación Cúbica.</string>
+    <string name="inter_lanczos4">Interpolación Lanczos4.</string>
+    <string name="inter_linear">Interpolación Lineal.</string>
+    <string name="inter_max">Interpolación Max.</string>
+    <string name="inter_nearest">Interpolación de vecino más cercano.</string>
+    <string name="button_save">Guardar!</string>
+    <string name="image_saved">La imagen se ha guardado correctamente.</string>
 
 </resources>
