@@ -1,0 +1,79 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/newCamera"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:layout_gravity="fill_vertical|fill_horizontal"
+    android:background="@color/bgColor"
+    android:orientation="vertical"
+    tools:ignore="InefficientWeight,NestedWeights" >
+
+    <LinearLayout
+        android:id="@+id/title_bar"
+        style="@style/sTitleBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:ignore="UseCompoundDrawables" >
+
+        <ImageView
+            android:id="@+id/title_logo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="false"
+            android:contentDescription="TODO"
+            android:longClickable="false"
+            android:src="@drawable/title_logo"
+            tools:ignore="HardcodedText,ContentDescription" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/body"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="0"
+        android:orientation="vertical" >
+
+        <FrameLayout
+            android:layout_width="fill_parent"
+            android:layout_height="200dp"
+            android:layout_gravity="top|center"
+            android:layout_margin="20dp"
+            android:layout_weight="1" >
+
+            <ImageView
+                android:id="@+id/preview"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:adjustViewBounds="true"
+                android:scaleType="fitCenter"
+                android:src="@null" />
+
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/path_text"
+            android:layout_width="fill_parent"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:gravity="center_horizontal"
+            android:text=""
+            android:textColor="@color/textColor" />
+
+        <Button
+            android:id="@+id/save_button"
+			style="@style/sButton"
+            android:layout_width="200dp"
+            android:layout_height="20dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="20dp"
+            android:background="@color/LinesColor"
+            android:gravity="center_horizontal|center_vertical"
+            android:text="@string/button_save"
+            android:textColor="@color/bgColor"
+            android:onClick="onClickMainMenu" />
+
+    </LinearLayout>
+
+</LinearLayout>

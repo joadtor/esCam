@@ -5,6 +5,7 @@
         <ignore path="res/layout/activity_file.xml" />
         <ignore path="res/layout/activity_main.xml" />
     </issue>
+    <issue id="DefaultLocale" severity="ignore" />
     <issue id="SelectableText">
         <ignore path="res/layout/activity_file.xml" />
     </issue>

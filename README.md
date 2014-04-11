@@ -17,13 +17,3 @@ Install the correct api:
 
 Configure the android device (Android Virtural or Mobile phone), and run the application within Eclipse.
 
-## Install OpenCV on the Virtual Device Manager
-
-**Update: EsCam works now with installing OpenCV on the device as it is provided within the application.**
-
-You can follow the steps in this (tutorial)[http://docs.opencv.org/doc/tutorials/introduction/android_binary_package/O4A_SDK.html]
-
-But basically, you can download the apk of the tool and install it on the virtual device.
-
-`<Android SDK path>/platform-tools/adb install <OpenCV4Android SDK path>/apk/OpenCV_2.4.8_Manager_2.16_armv7a-neon.apk`
-
