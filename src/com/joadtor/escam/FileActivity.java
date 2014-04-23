@@ -14,6 +14,7 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.database.Cursor;
@@ -23,6 +24,7 @@ import android.graphics.Matrix;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -52,7 +54,7 @@ public class FileActivity extends Activity {
 	
 	private Uri mImgUri;
 	private Bitmap mBitmap;
-	private int inter_alg = Imgproc.INTER_LINEAR;
+	private int mInterAlg;
 	
 	static {
         if (!OpenCVLoader.initDebug())
@@ -86,7 +88,39 @@ public class FileActivity extends Activity {
 			loadBackground(new  File(FilePath));
         	
         }      
+        // Get interpolation algorithm
         
+        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+    	
+    	
+        switch(Integer.valueOf(sharedPrefs.getString("prefInterAlg", "5"))){
+
+        case 1:
+        	mInterAlg = Imgproc.INTER_AREA;
+        	break;
+        case 2:
+        	mInterAlg = Imgproc.INTER_BITS2;
+        	break;
+        case 3:
+        	mInterAlg = Imgproc.INTER_CUBIC;
+        	break;
+        case 4:
+        	mInterAlg = Imgproc.INTER_LANCZOS4;
+        	break;
+        case 5:
+        	mInterAlg = Imgproc.INTER_LINEAR;
+        	break;
+        case 6:
+        	mInterAlg = Imgproc.INTER_MAX;
+        	break;
+        case 7:
+        	mInterAlg = Imgproc.INTER_NEAREST;
+        	break;
+        default:
+        	mInterAlg = Imgproc.INTER_LINEAR;
+        	break;
+
+        }
 
         // Options
         Button options = (Button) this.findViewById(R.id.options);
@@ -300,7 +334,7 @@ public class FileActivity extends Activity {
 		Size img_size = new Size((double)cvmat.width(),(double)cvmat.height());
 		Mat img_result = new Mat(img_size,cvmat.type());
 		
-		Imgproc.warpPerspective(cvmat, img_result, perspective, img_size, inter_alg);
+		Imgproc.warpPerspective(cvmat, img_result, perspective, img_size, mInterAlg);
 		
 		// Creating a Bitmap from a Mat     
 		Bitmap bdst = Bitmap.createBitmap(img_result.cols(),  img_result.rows(), Bitmap.Config.ARGB_8888); 
@@ -376,33 +410,33 @@ public class FileActivity extends Activity {
     	public void onClick(View v) {
     		// we'll just display a simple toast on a button click
     		Button b = (Button) v;
-    		if(b.getId() == R.id.one) {
+    		if(b.getId() == R.id.area) {
     			Toast.makeText(getApplicationContext(), getResources().getString(R.string.inter_area), Toast.LENGTH_SHORT).show();
-    			inter_alg = Imgproc.INTER_AREA;
+    			mInterAlg = Imgproc.INTER_AREA;
     		}
-    		else if(b.getId() == R.id.two) {
+    		else if(b.getId() == R.id.bits2) {
     			Toast.makeText(getApplicationContext(), getResources().getString(R.string.inter_bits2), Toast.LENGTH_SHORT).show();
-    			inter_alg = Imgproc.INTER_BITS2;
+    			mInterAlg = Imgproc.INTER_BITS2;
     		}
-    		else if(b.getId() == R.id.three) {
+    		else if(b.getId() == R.id.cubic) {
     			Toast.makeText(getApplicationContext(), getResources().getString(R.string.inter_cubic), Toast.LENGTH_SHORT).show();
-    			inter_alg = Imgproc.INTER_CUBIC;
+    			mInterAlg = Imgproc.INTER_CUBIC;
     		}
-    		else if(b.getId() == R.id.four) {
+    		else if(b.getId() == R.id.lanczos) {
     			Toast.makeText(getApplicationContext(), getResources().getString(R.string.inter_lanczos4), Toast.LENGTH_SHORT).show();
-    			inter_alg = Imgproc.INTER_LANCZOS4;
+    			mInterAlg = Imgproc.INTER_LANCZOS4;
     		}
-    		else if(b.getId() == R.id.five) {
+    		else if(b.getId() == R.id.linear) {
     			Toast.makeText(getApplicationContext(), getResources().getString(R.string.inter_linear), Toast.LENGTH_SHORT).show();
-    			inter_alg = Imgproc.INTER_LINEAR;
+    			mInterAlg = Imgproc.INTER_LINEAR;
     		}
-    		else if(b.getId() == R.id.six) {
+    		else if(b.getId() == R.id.max) {
     			Toast.makeText(getApplicationContext(), getResources().getString(R.string.inter_max), Toast.LENGTH_SHORT).show();
-    			inter_alg = Imgproc.INTER_MAX;
+    			mInterAlg = Imgproc.INTER_MAX;
     		}
-    		else if(b.getId() == R.id.seven) {
+    		else if(b.getId() == R.id.nearestn) {
     			Toast.makeText(getApplicationContext(), getResources().getString(R.string.inter_nearest), Toast.LENGTH_SHORT).show();
-    			inter_alg = Imgproc.INTER_NEAREST;
+    			mInterAlg = Imgproc.INTER_NEAREST;
     		}
     		
     		

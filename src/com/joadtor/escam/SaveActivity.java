@@ -16,6 +16,7 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.database.Cursor;
@@ -24,6 +25,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.preference.PreferenceManager;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -49,6 +51,7 @@ public class SaveActivity extends Activity {
 	
 	private File mPath;
 	private String mFileName;
+	private int mFormat;
 	
 	static {
         if (!OpenCVLoader.initDebug())
@@ -63,9 +66,13 @@ public class SaveActivity extends Activity {
     	setContentView(R.layout.activity_save);
 
     	V_esCam gv = (V_esCam)getApplication();
-
-
+    	
     	((ImageView)findViewById(R.id.preview)).setImageBitmap(gv.getFilter());
+    	
+    	// Get format
+    	
+    	SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+    	mFormat = Integer.valueOf(sharedPrefs.getString("prefFormat", "0"));
 
     	// Preparing the file path
     	
@@ -78,7 +85,12 @@ public class SaveActivity extends Activity {
     	
     	Calendar now = Calendar.getInstance();
     	
-    	mFileName = String.format("%d%02d%02d_%02d%02d%02d.jpg", now.get(Calendar.YEAR), now.get(Calendar.MONTH)+1, now.get(Calendar.DATE), now.get(Calendar.HOUR_OF_DAY), now.get(Calendar.MINUTE), now.get(Calendar.SECOND));
+    	if(mFormat == 1){ // if mFormat == 1 PNG
+    		mFileName = String.format("%d%02d%02d_%02d%02d%02d.png", now.get(Calendar.YEAR), now.get(Calendar.MONTH)+1, now.get(Calendar.DATE), now.get(Calendar.HOUR_OF_DAY), now.get(Calendar.MINUTE), now.get(Calendar.SECOND));
+    	}
+    	else { // else jpg
+    		mFileName = String.format("%d%02d%02d_%02d%02d%02d.jpg", now.get(Calendar.YEAR), now.get(Calendar.MONTH)+1, now.get(Calendar.DATE), now.get(Calendar.HOUR_OF_DAY), now.get(Calendar.MINUTE), now.get(Calendar.SECOND));
+    	}
 
     	((TextView)findViewById(R.id.path_text)).setText(mPath.getPath() + "/" + mFileName);
 
@@ -122,7 +134,7 @@ public class SaveActivity extends Activity {
     	
     	if (id == R.id.save_button) {
     		V_esCam gv = (V_esCam)getApplication();
-    		//saveBitmap(gv.getFilter());
+    		saveBitmap(gv.getFilter());
     		
     		Intent i = new Intent();
     	    setResult(FILE_OK, i);
@@ -137,7 +149,12 @@ public class SaveActivity extends Activity {
     	try {
     		saveFile = new FileOutputStream(new File(mPath, mFileName));
 
-    		image.compress(Bitmap.CompressFormat.JPEG,100, saveFile);
+    		if(mFormat == 1){
+    			image.compress(Bitmap.CompressFormat.PNG,100, saveFile);
+    		}
+    		else {
+    			image.compress(Bitmap.CompressFormat.JPEG,100, saveFile);
+    		}
 
     		saveFile.flush();
     		saveFile.close();

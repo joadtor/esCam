@@ -7,8 +7,8 @@
 		<Button
 			android:layout_height="43dp"
 			android:layout_weight="1"
-			android:id="@+id/one"
-			android:drawableTop="@drawable/icon_alg_test"
+			android:id="@+id/wout"
+			android:drawableTop="@drawable/icon_filter_wout"
 			android:background="@null"
 			android:layout_marginRight="5dp"
 			android:layout_marginLeft="5dp"
@@ -18,8 +18,8 @@
 		<Button
 			android:layout_height="43dp"
 			android:layout_weight="1"
-			android:id="@+id/two"
-			android:drawableTop="@drawable/icon_alg_test"
+			android:id="@+id/bina"
+			android:drawableTop="@drawable/icon_filter_bina"
 			android:background="@null"
 			android:layout_marginRight="5dp"
 			android:layout_marginLeft="5dp"
@@ -29,8 +29,8 @@
 		<Button
 			android:layout_height="43dp"
 			android:layout_weight="1"
-			android:id="@+id/three"
-			android:drawableTop="@drawable/icon_alg_test"
+			android:id="@+id/bima"
+			android:drawableTop="@drawable/icon_filter_bima"
 			android:background="@null"
 			android:layout_marginRight="5dp"
 			android:layout_marginLeft="5dp"

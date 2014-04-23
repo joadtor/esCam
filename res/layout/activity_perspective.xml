@@ -41,7 +41,7 @@
             android:layout_marginRight="5dp"
             android:layout_marginTop="6dp"
             android:background="@null"
-            android:drawableTop="@drawable/settings_icon_anim"
+            android:drawableTop="@drawable/icon_settings_anim"
             android:gravity="right|center_vertical"
             android:paddingTop="2dp" />
 

@@ -4,15 +4,15 @@
     <item
         android:state_focused="true"
         android:state_pressed="false"
-        android:drawable="@drawable/main_button_frame" />
+        android:drawable="@drawable/icon_interalg_cubic_s" />
     <item
         android:state_focused="true"
         android:state_pressed="true"
-        android:drawable="@drawable/main_button_frame" />
+        android:drawable="@drawable/icon_interalg_cubic_s" />
     <item
         android:state_focused="false"
         android:state_pressed="true"
-        android:drawable="@drawable/main_button_frame" />
+        android:drawable="@drawable/icon_interalg_cubic_s" />
     <item
-        android:drawable="@drawable/bg_alpha" />
+        android:drawable="@drawable/icon_interalg_cubic_u" />
 </selector>

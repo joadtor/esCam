@@ -4,15 +4,15 @@
     <item
         android:state_focused="true"
         android:state_pressed="false"
-        android:drawable="@drawable/settings_icon_pressed" />
+        android:drawable="@drawable/icon_interalg_nearestn_s" />
     <item
         android:state_focused="true"
         android:state_pressed="true"
-        android:drawable="@drawable/settings_icon_pressed" />
+        android:drawable="@drawable/icon_interalg_nearestn_s" />
     <item
         android:state_focused="false"
         android:state_pressed="true"
-        android:drawable="@drawable/settings_icon_pressed" />
+        android:drawable="@drawable/icon_interalg_nearestn_s" />
     <item
-        android:drawable="@drawable/settings_icon" />
+        android:drawable="@drawable/icon_interalg_nearestn_u" />
 </selector>

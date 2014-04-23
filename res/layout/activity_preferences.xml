@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+  
+    <PreferenceCategory android:title="@string/pref_Title_scan" >
+        <ListPreference
+            android:key="prefInterAlg"
+            android:entries="@array/InterAlg"
+            android:summary="@string/pref_InterAlg_sum" 
+            android:entryValues="@array/InterAlgValues"
+            android:title="@string/pref_InterAlg"
+            android:defaultValue="5" />
+        <ListPreference
+            android:key="prefFilter"
+            android:entries="@array/Filter"
+            android:summary="@string/pref_Filter_sum" 
+            android:entryValues="@array/FilterValues"
+            android:title="@string/pref_Filter"
+            android:defaultValue="1" />
+    </PreferenceCategory>
+    <PreferenceCategory android:title="@string/pref_Title_save" >
+        <ListPreference
+            android:key="prefFormat"
+            android:entries="@array/Format"
+            android:summary="@string/pref_Format_sum" 
+            android:entryValues="@array/FormatValues"
+            android:title="@string/pref_Format"
+            android:defaultValue="0" />
+    </PreferenceCategory>
+
+</PreferenceScreen>
