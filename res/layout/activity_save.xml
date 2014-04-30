@@ -24,6 +24,26 @@
             android:longClickable="false"
             android:src="@drawable/title_logo"
             tools:ignore="HardcodedText,ContentDescription" />
+
+        <TextView
+            android:id="@+id/title_text"
+            style="@style/sTitleText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_weight="1"
+            android:clickable="false" />
+
+        <ImageView
+            android:id="@+id/home"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginRight="5dp"
+            android:background="@null"
+            android:clickable="false"
+            android:gravity="right|center_vertical"
+            android:src="@drawable/icon_save" />
+
     </LinearLayout>
 
     <LinearLayout
@@ -53,33 +73,35 @@
                 android:src="@null" />
         </FrameLayout>
 
-        <TextView
-            android:id="@+id/path_tittle"
-            android:layout_width="wrap_content"
-            android:layout_height="4dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_weight="1"
-            android:paddingRight="110dp"
-            android:text="@string/path"
-            android:textColor="@color/textColor"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/path_text"
+        <RelativeLayout
+            android:id="@+id/save_button_frame"
             android:layout_width="fill_parent"
-            android:layout_height="50dp"
-            android:layout_gravity="top|center_horizontal"
-            android:gravity="center_horizontal"
-            android:textColor="@color/textColor" />
-
-        <Button
-            android:id="@+id/save_button"
-            style="@style/saveButton"
-            android:layout_width="180dp"
-            android:layout_height="20dp"
+            android:layout_height="100dp"
             android:layout_gravity="center_horizontal"
-            android:onClick="onClickMainMenu"
-            android:text="@string/button_save" />
+            android:layout_weight="1" >
+
+            <TextView
+                android:id="@+id/path_text"
+                android:layout_width="fill_parent"
+                android:layout_height="60dp"
+                android:layout_above="@+id/save_button"
+                android:gravity="center_horizontal"
+                android:text="@string/path"
+                android:textColor="@color/textColor" />
+
+            <Button
+                android:id="@+id/save_button"
+                style="@style/saveButton"
+                android:layout_width="180dp"
+                android:layout_height="40dp"
+                android:layout_alignParentBottom="true"
+                android:layout_centerInParent="true"
+                android:layout_gravity="bottom|center_horizontal"
+                android:onClick="onClickMainMenu"
+                android:text="@string/button_save" />
+
+        </RelativeLayout>
+
     </LinearLayout>
 
 </LinearLayout>

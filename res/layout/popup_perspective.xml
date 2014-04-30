@@ -3,39 +3,68 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content" >
 
-	<TableRow>
-		<Button
-			android:layout_height="43dp"
-			android:layout_weight="1"
-			android:id="@+id/wout"
-			android:drawableTop="@drawable/icon_filter_wout"
-			android:background="@null"
-			android:layout_marginRight="5dp"
-			android:layout_marginLeft="5dp"
-			android:minWidth="30dp"
-			android:minHeight="30dp"
-			 />
-		<Button
-			android:layout_height="43dp"
-			android:layout_weight="1"
-			android:id="@+id/bina"
-			android:drawableTop="@drawable/icon_filter_bina"
-			android:background="@null"
-			android:layout_marginRight="5dp"
-			android:layout_marginLeft="5dp"
-			android:minWidth="30dp"
-			android:minHeight="30dp"
-			 />
-		<Button
-			android:layout_height="43dp"
-			android:layout_weight="1"
-			android:id="@+id/bima"
-			android:drawableTop="@drawable/icon_filter_bima"
-			android:background="@null"
-			android:layout_marginRight="5dp"
-			android:layout_marginLeft="5dp"
-			android:minWidth="30dp"
-			android:minHeight="30dp"
-			 />
-	</TableRow>
+    <TableRow>
+
+        <Button
+            android:id="@+id/wout"
+            android:layout_height="43dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_weight="1"
+            android:background="@null"
+            android:drawableTop="@drawable/icon_filter_wout"
+            android:minHeight="30dp"
+            android:minWidth="30dp" />
+
+        <Button
+            android:id="@+id/bina"
+            android:layout_height="43dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_weight="1"
+            android:background="@null"
+            android:drawableTop="@drawable/icon_filter_bina"
+            android:minHeight="30dp"
+            android:minWidth="30dp" />
+
+        <Button
+            android:id="@+id/bima"
+            android:layout_height="43dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_weight="1"
+            android:background="@null"
+            android:drawableTop="@drawable/icon_filter_bima"
+            android:minHeight="30dp"
+            android:minWidth="30dp" />
+    </TableRow>
+
+    <TableRow
+        android:layout_marginTop="10dp"
+        android:paddingLeft="25dp"
+        android:paddingRight="25dp" >
+
+        <Button
+            android:id="@+id/niblack"
+            android:layout_height="43dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_weight="1"
+            android:background="@null"
+            android:drawableTop="@drawable/icon_interalg_linear"
+            android:minHeight="30dp"
+            android:minWidth="30dp" />
+
+        <Button
+            android:id="@+id/sauvola"
+            android:layout_height="43dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_weight="1"
+            android:background="@null"
+            android:drawableTop="@drawable/icon_interalg_max"
+            android:minHeight="30dp"
+            android:minWidth="30dp" />
+    </TableRow>
+
 </TableLayout>

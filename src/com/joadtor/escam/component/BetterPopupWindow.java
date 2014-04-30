@@ -167,8 +167,6 @@ public class BetterPopupWindow {
 		int rootHeight = this.root.getMeasuredHeight();
 
 		int screenWidth = this.windowManager.getDefaultDisplay().getWidth();
-		int screenHeight = this.windowManager.getDefaultDisplay().getHeight();
-
 		int xPos = ((screenWidth - rootWidth) / 2) + xOffset;
 		int yPos = anchorRect.top - rootHeight + yOffset;
 

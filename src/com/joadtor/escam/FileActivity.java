@@ -30,23 +30,19 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.TableRow;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.joadtor.escam.R;
-import com.joadtor.escam.PerspectiveActivity.PopupWindow;
 import com.joadtor.escam.component.BetterPopupWindow;
 import com.joadtor.escam.component.Selector;
 
 
 public class FileActivity extends Activity {
 	
-	private static final int IMAGE_MAX_SIZE = 1920;
+	private static final int IMAGE_MAX_SIZE = 2500;
 	private static final int PROCESS_OK = 1313;
 	
 	private static final int FILE_OK = 95;
@@ -189,8 +185,11 @@ public class FileActivity extends Activity {
 
 			int scale = 1;
 			if (o.outHeight > IMAGE_MAX_SIZE || o.outWidth > IMAGE_MAX_SIZE) {
-				scale = (int)Math.pow(2, (int) Math.round(Math.log(IMAGE_MAX_SIZE / 
-						(double) Math.max(o.outHeight, o.outWidth)) / Math.log(0.5)));
+			        if (o.outWidth > o.outHeight) {
+			        scale = Math.round((float) o.outHeight / (float) IMAGE_MAX_SIZE);
+			        } else {
+			        scale = Math.round((float) o.outWidth / (float) IMAGE_MAX_SIZE);
+			        }
 			}
 
 			//Decode with inSampleSize
@@ -198,6 +197,7 @@ public class FileActivity extends Activity {
 			o2.inSampleSize = scale;
 			fis = new FileInputStream(f);
 			b = BitmapFactory.decodeStream(fis, null, o2);
+			//b = BitmapFactory.decodeStream(fis);
 			fis.close();
 
 		} catch (Exception e) {

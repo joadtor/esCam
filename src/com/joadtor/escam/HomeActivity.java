@@ -25,8 +25,6 @@ public class HomeActivity extends Activity {
 	private static final int PROCESS_OK = 1313;
 	
 	private static final int FILE_OK = 95;
-	private static final int FILE_KO = 59;
-	
 	private Uri mImgUri;
 
     @Override

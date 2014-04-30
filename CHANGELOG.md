@@ -1,3 +1,13 @@
+## 24/04/2014
+
+Features:
+
+  - Save activity's layout has been revamped.
+
+Bugfixes:
+
+  - Solved some out of memory issues when working with large images.
+
 ## 20/04/2014
 
 Features:

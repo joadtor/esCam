@@ -1,47 +1,29 @@
 package com.joadtor.escam;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.util.Calendar;
 
 import org.opencv.android.OpenCVLoader;
-import org.opencv.android.Utils;
-import org.opencv.core.Mat;
-import org.opencv.core.Size;
-import org.opencv.imgproc.Imgproc;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.database.Cursor;
 import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.preference.PreferenceManager;
 import android.provider.MediaStore;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.View.OnClickListener;
-import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TableRow;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import com.joadtor.escam.component.BetterPopupWindow;
-import com.joadtor.escam.component.Selector;
 
 
 public class SaveActivity extends Activity {
@@ -92,7 +74,7 @@ public class SaveActivity extends Activity {
     		mFileName = String.format("%d%02d%02d_%02d%02d%02d.jpg", now.get(Calendar.YEAR), now.get(Calendar.MONTH)+1, now.get(Calendar.DATE), now.get(Calendar.HOUR_OF_DAY), now.get(Calendar.MINUTE), now.get(Calendar.SECOND));
     	}
 
-    	((TextView)findViewById(R.id.path_text)).setText(mPath.getPath() + "/" + mFileName);
+    	((TextView)findViewById(R.id.path_text)).setText(getString(R.string.path) + " " + mPath.getPath() + "/" + mFileName);
 
     }
 
