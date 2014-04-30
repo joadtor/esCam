@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Main -->    
+    
+    <string name="app_name">esCam</string>
+    <string name="title_activity_main">esCam</string>
+    <string name="title_activity_about">Acerca de</string>
+    <string name="title_activity_file">Fichero</string>
+    <string name="title_activity_perspective">Perspectiva</string>    
+    <string name="title_activity_save">Guardado</string>
+    
+    <!--  Home -->
+       
+    <string name="button_from_camera">Imagen desde cámara</string>
+    <string name="button_from_file">Imagen desde fichero</string>
+    <string name="menu_settings">Opciones</string>
+    <string name="menu_about">Acerca de esCam</string>
+    
+    <!--  About -->
+
+    <string name="about_text">esCam - JOADTOR 2013</string>
+    <string name="ocv_text">Powered by OpenCV</string>
+    
+    
+    <!--  Options Bar -->
+
+    <string name="ok_button">OK</string>
+    <string name="increase">+</string>
+    <string name="dec">-</string>
+    <string name="_90">90</string>
+    <string name="_180">180</string>
+
+    <!--  File -->
+    
+    <string name="inter_area">Interpolación de Área.</string>
+    <string name="inter_bits2">Interpolación de Bits2.</string>
+    <string name="inter_cubic">Interpolación Cúbica.</string>
+    <string name="inter_lanczos4">Interpolación Lanczos4.</string>
+    <string name="inter_linear">Interpolación Lineal.</string>
+    <string name="inter_max">Interpolación Max.</string>
+    <string name="inter_nearest">Interpolación de vecino más cercano.</string>
+    
+    <!--  Perspective -->
+
+    <string name="no_filter">Imagen sin filtro.</string>
+    <string name="binarize_filter">Imagen con filtro de binarizado.</string>
+    <string name="tozero_filter">Imagen con filtro de binarizado con máscara.</string>
+    
+     <!--  Save -->
+   
+    <string name="button_save">¡Guardar!</string>
+    <string name="image_saved">La imagen se ha guardado correctamente.</string>
+    <string name="path">Ruta:</string>
+    
+    
+    <!--  Preferences -->
+    
+    <string name="pref_Title_scan">Configuración de escaneo</string> 
+    <string name="pref_Title_save">Configuración de guardado</string> 
+    <string name="pref_InterAlg_sum">Establece el algoritmo de interpolación que se usará por defecto.</string>
+    <string name="pref_InterAlg">Algoritmo de Interpolación</string>
+        
+    <string-array name="InterAlg">
+        <item name="1">Área</item>
+        <item name="2">Bits2</item>
+        <item name="3">Cúbica</item>
+        <item name="4">Lanczos4</item>
+        <item name="5">Lineal</item>
+        <item name="6">Max</item>
+        <item name="7">Vecino más cercano</item>
+    </string-array>
+    
+    
+	<string-array name="InterAlgValues">
+        <item name="1">1</item>
+        <item name="2">2</item>
+        <item name="3">3</item>
+        <item name="4">4</item>
+        <item name="5">5</item>
+        <item name="6">6</item>
+        <item name="7">7</item>
+    </string-array>
+    
+    <string name="pref_Filter_sum">Establece el tipo de filtrado de imagen que se usará por defecto.</string>
+    <string name="pref_Filter">Filtrado</string>
+        
+    <string-array name="Filter">
+        <item name="1">Sin Filtro</item>
+        <item name="2">Binarizado</item>
+        <item name="3">Binarizado con máscara</item>
+    </string-array>
+    
+    
+	<string-array name="FilterValues">
+        <item name="1">1</item>
+        <item name="2">2</item>
+        <item name="3">3</item>
+    </string-array>
+    
+	<string name="pref_Format_sum">Establece el formato de salida de las imágenes.</string>
+    <string name="pref_Format">Formato de Salida</string>
+        
+    <string-array name="Format">
+        <item name="1">JPEG</item>
+        <item name="2">PNG</item>
+    </string-array>
+    
+    <string-array name="FormatValues">
+        <item name="1">0</item>
+        <item name="2">1</item>
+    </string-array>
+
+    
+
+</resources>

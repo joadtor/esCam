@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <lint>
+    <issue id="ButtonStyle">
+        <ignore path="res/layout/popup_file.xml" />
+        <ignore path="res/layout/popup_perspective.xml" />
+    </issue>
     <issue id="ContentDescription">
         <ignore path="res/layout/activity_about.xml" />
         <ignore path="res/layout/activity_file.xml" />
         <ignore path="res/layout/activity_main.xml" />
+        <ignore path="res/layout/activity_save.xml" />
     </issue>
     <issue id="DefaultLocale" severity="ignore" />
     <issue id="SelectableText">
@@ -13,5 +18,8 @@
         <ignore path="res/layout/activity_about.xml" />
         <ignore path="res/layout/activity_file.xml" />
         <ignore path="res/layout/activity_main.xml" />
+    </issue>
+    <issue id="UselessParent">
+        <ignore path="res/layout/popup_perspective.xml" />
     </issue>
 </lint>

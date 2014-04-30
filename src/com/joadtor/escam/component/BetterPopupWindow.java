@@ -104,7 +104,16 @@ public class BetterPopupWindow {
 		this.root = root;
 		this.window.setContentView(root);
 	}
+	
+	/**
+	 * Gets the content view. 
+	 * 
+	 */
 
+	public View getContentView() {
+		return this.window.getContentView();
+	}
+	
 	/**
 	 * Will inflate and set the view from a resource id
 	 * 

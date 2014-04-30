@@ -23,7 +23,7 @@ public class Selector extends View {
 	private int mStrokeSize = 2;
 	
 	private int mActiveIcon = -1;
-	private Boolean editable = true;
+	private Boolean mEditable = true;
 
 	// important: do not forget to add AttributeSet, it is necessary to have this
 	// view called from an xml view file
@@ -94,7 +94,7 @@ public class Selector extends View {
 	protected void onSizeChanged (int w, int h, int oldw, int oldh) {
 		super.onSizeChanged(w, h, oldw, oldh);
 		
-		if(this.editable){
+		if(this.mEditable){
 			int gap_x = this.getWidthC() /3;
 			int gap_y = this.getHeigthC() /3;
 
@@ -112,7 +112,7 @@ public class Selector extends View {
 	protected void onDraw(Canvas canvas) {
 
 		canvas.drawColor(Color.TRANSPARENT);
-		if(this.editable){
+		if(this.mEditable){
 			for(Icon bullet : mListIcon) {
 				if(mListIcon.size() > 1) 
 					canvas.drawLine(bullet.getX(), bullet.getY(), mListIcon.get((bullet.id + 1) % mListIcon.size()).getX(),  mListIcon.get((bullet.id + 1) % mListIcon.size()).getY(), mPaintLine);
@@ -125,7 +125,7 @@ public class Selector extends View {
 
 	@Override
 	public boolean onTouchEvent(MotionEvent event) {
-		if(this.editable){
+		if(this.mEditable){
 			int action = event.getAction();
 
 			int x = (int) event.getX();
@@ -195,8 +195,8 @@ public class Selector extends View {
 
 				if(listT.get(3).getX() < listT.get(2).getX() && listT.get(3).getY() < listT.get(2).getY()){
 					if (listT.get(1).getX() < listT.get(2).getX() && listT.get(1).getX() < listT.get(3).getX()){
-						int m1 = Math.abs((listT.get(1).getY() - listT.get(2).getY()) / (listT.get(1).getX() - listT.get(2).getX()));
-						int m2 = Math.abs((listT.get(1).getY() - listT.get(3).getY()) / (listT.get(1).getX() - listT.get(3).getX()));
+						float m1 = Math.abs((listT.get(1).getY() - listT.get(2).getY()) / (float)(listT.get(1).getX() - listT.get(2).getX()));
+						float m2 = Math.abs((listT.get(1).getY() - listT.get(3).getY()) / (float)(listT.get(1).getX() - listT.get(3).getX()));
 
 						if(m1 >= m2){
 							Icon aux1, aux2;
@@ -209,11 +209,13 @@ public class Selector extends View {
 						}
 					}
 				}
+				
+				
 
 				if(listT.get(0).getX() > listT.get(2).getX() && listT.get(2).getX() > listT.get(3).getX() && listT.get(1).getX() > listT.get(0).getX() && listT.get(3).getY() > listT.get(2).getY()) {
 
-					int m1 = Math.abs((listT.get(2).getY() - listT.get(0).getY()) / (listT.get(2).getX() - listT.get(0).getX()));
-					int m2 = Math.abs((listT.get(3).getY() - listT.get(0).getY()) / (listT.get(3).getX() - listT.get(0).getX()));
+					float m1 = Math.abs((listT.get(2).getY() - listT.get(0).getY()) / (float)(listT.get(2).getX() - listT.get(0).getX()));
+					float m2 = Math.abs((listT.get(3).getY() - listT.get(0).getY()) / (float)(listT.get(3).getX() - listT.get(0).getX()));
 
 					if(m1 <= m2){
 						Icon aux1, aux2, aux3, aux4;
@@ -232,6 +234,29 @@ public class Selector extends View {
 					}	
 				}
 
+				
+				
+				if(listT.get(0).getY() < listT.get(3).getY() && listT.get(0).getY() > listT.get(1).getY() && listT.get(2).getX() < listT.get(1).getX()){
+
+						float m1 = Math.abs((listT.get(0).getY() - listT.get(1).getY()) / (float)(listT.get(0).getX() - listT.get(1).getX()));
+						float m2 = Math.abs((listT.get(2).getY() - listT.get(1).getY()) / (float)(listT.get(2).getX() - listT.get(1).getX()));
+
+						if(m1 > m2){
+							Icon aux1, aux2, aux3, aux4;
+
+							aux1 = listT.get(3);
+							aux2 = listT.get(1);
+							aux3 = listT.get(0);
+							aux4 = listT.get(2);
+
+							listT = new ArrayList<Icon>();
+
+							listT.add(aux1);
+							listT.add(aux2);
+							listT.add(aux3);
+							listT.add(aux4);
+						}
+				}
 
 				// Re-index icons
 				for(int i = 0; i < listT.size(); i++)
@@ -273,12 +298,12 @@ public class Selector extends View {
 	}
 	
 	public void disableEdit(){
-		this.editable = false;
+		this.mEditable = false;
 		invalidate();
 	}
 	
 	public void enableEdit(){
-		this.editable = true;
+		this.mEditable = true;
 		invalidate();
 	}
 }

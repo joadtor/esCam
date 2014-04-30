@@ -11,6 +11,7 @@ import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.preference.PreferenceManager;
 import android.provider.MediaStore;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -41,6 +42,10 @@ public class HomeActivity extends Activity {
 			return;
         
 		mImgUri = Uri.fromFile(new File(path, "pic13.tmp"));
+		
+		// Set default preferences (Only first time)
+		
+		PreferenceManager.setDefaultValues(this, R.layout.activity_preferences, false); 
     }
 
     @Override
@@ -61,6 +66,9 @@ public class HomeActivity extends Activity {
         int itemId = item.getItemId();
 		if (itemId == R.id.menu_about) {
 			startActivity (new Intent(getApplicationContext(), AboutActivity.class));
+			return true;
+		} if (itemId == R.id.menu_settings) {
+			startActivity (new Intent(getApplicationContext(), PreferencesActivity.class));
 			return true;
 		} else {
 			return super.onOptionsItemSelected(item);

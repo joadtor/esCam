@@ -10,6 +10,7 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.database.Cursor;
@@ -17,6 +18,7 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -41,13 +43,14 @@ public class PerspectiveActivity extends Activity {
 	private static final int FILE_OK = 95;
 	private static final int FILE_KO = 59;
 	
-	private static final int NO_FILTER = 13000;
-	private static final int BINARIZE = 13001;
-	private static final int BIN_TOZERO = 13002;
+	private static final int NO_FILTER = 13001;
+	private static final int BINARIZE = 13002;
+	private static final int BIN_TOZERO = 13003;
 	
 	private Uri mImgUri;
 	private Bitmap mBitmap;
 	private Boolean mTurned = false;
+	private int mFilter;
 	
 	static {
         if (!OpenCVLoader.initDebug())
@@ -62,41 +65,32 @@ public class PerspectiveActivity extends Activity {
         setContentView(R.layout.activity_perspective);
         
         
-        // Get from SharedResources
-        V_esCam gv = (V_esCam)getApplication();
-        mBitmap = gv.getPerspective();
-        gv.setFilter(mBitmap);
-        
-        BitmapDrawable myBitmap = new BitmapDrawable(mBitmap);
-
-        
-        Selector selector = (Selector) findViewById(R.id.view_select);
-        
-		if(myBitmap != null){
-			selector = (Selector) findViewById(R.id.view_select);
-			selector.setBackgroundDrawable(myBitmap);
-			selector.setEllipseColor(getResources().getColor(R.color.EllipsesColor));
-			selector.setLineColor(getResources().getColor(R.color.LinesColor));
-		}
-         
+        // Get filter
+    	
+    	SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+    	mFilter = Integer.valueOf(sharedPrefs.getString("prefFilter", "1")) + 13000;
+    	
+    	setImageFilter(mFilter,true);
     	
 
+		// Hide selection tools
+    	
+    	Selector selector = (Selector) findViewById(R.id.view_select);
 		selector.disableEdit();
-
-        
         
         // Options
         Button options = (Button) this.findViewById(R.id.options);
         options.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				PopupWindow dw = new PopupWindow(v);
-				dw.setLayoutResource(R.layout.popup_perspective);
-				dw.showLikeQuickAction(0,10);
+				PopupWindow mPW = new PopupWindow(v);
+				mPW.setLayoutResource(R.layout.popup_perspective);
+				mPW.showLikeQuickAction(0,10);
 			}
 		});
-        
+    
     }
+
 
 
 	@SuppressLint("ResourceAsColor")
@@ -156,6 +150,7 @@ public class PerspectiveActivity extends Activity {
 
     public class PopupWindow extends BetterPopupWindow implements OnClickListener {
 
+
     	public PopupWindow(View anchor) {
     		super(anchor);
     	}
@@ -191,22 +186,29 @@ public class PerspectiveActivity extends Activity {
     	public void onClick(View v) {
     		// we'll just display a simple toast on a button click
     		Button b = (Button) v;
-    		if(b.getId() == R.id.one) 
+    		if(b.getId() == R.id.wout) {
     			setImageFilter(NO_FILTER);
-    		else if(b.getId() == R.id.two) 
+    			mFilter = NO_FILTER;
+    		}
+    		else if(b.getId() == R.id.bina) {
     			setImageFilter(BINARIZE);
-    		else if(b.getId() == R.id.three) 
+    			mFilter = BINARIZE;
+    		}
+    		else if(b.getId() == R.id.bima) {
     			setImageFilter(BIN_TOZERO);
+    			mFilter = BIN_TOZERO;
+    		}
     		
     		this.dismiss();
     	}
+    	
     }
 
 	
-    public void setImageFilter(int filterID)
+    public void setImageFilter(int filterID, boolean first)
     {
     	if (filterID == NO_FILTER){
-        	Toast.makeText(getApplicationContext(), getResources().getString(R.string.no_filter), Toast.LENGTH_SHORT).show();
+    		if(!first) Toast.makeText(getApplicationContext(), getResources().getString(R.string.no_filter), Toast.LENGTH_SHORT).show();
         	    		
     		// Get from SharedResources
             V_esCam gv = (V_esCam)getApplication();
@@ -220,12 +222,10 @@ public class PerspectiveActivity extends Activity {
     		if(myBitmap != null){
     			selector = (Selector) findViewById(R.id.view_select);
     			selector.setBackgroundDrawable(myBitmap);
-    			selector.setEllipseColor(getResources().getColor(R.color.EllipsesColor));
-    			selector.setLineColor(getResources().getColor(R.color.LinesColor));
     		}
     	}
     	if (filterID == BINARIZE){
-    		Toast.makeText(getApplicationContext(), getResources().getString(R.string.binarize_filter), Toast.LENGTH_SHORT).show();
+    		if(!first) Toast.makeText(getApplicationContext(), getResources().getString(R.string.binarize_filter), Toast.LENGTH_SHORT).show();
     		
     		// Get from SharedResources
             V_esCam gv = (V_esCam)getApplication();
@@ -255,14 +255,12 @@ public class PerspectiveActivity extends Activity {
     		if(myBitmap != null){
     			selector = (Selector) findViewById(R.id.view_select);
     			selector.setBackgroundDrawable(myBitmap);
-    			selector.setEllipseColor(getResources().getColor(R.color.EllipsesColor));
-    			selector.setLineColor(getResources().getColor(R.color.LinesColor));
     		}
     		
     		
     	}
     	if (filterID == BIN_TOZERO){
-    		Toast.makeText(getApplicationContext(), getResources().getString(R.string.tozero_filter), Toast.LENGTH_SHORT).show();
+    		if(!first) Toast.makeText(getApplicationContext(), getResources().getString(R.string.tozero_filter), Toast.LENGTH_SHORT).show();
     		
     		// Get from SharedResources
             V_esCam gv = (V_esCam)getApplication();
@@ -291,8 +289,6 @@ public class PerspectiveActivity extends Activity {
     		if(myBitmap != null){
     			selector = (Selector) findViewById(R.id.view_select);
     			selector.setBackgroundDrawable(myBitmap);
-    			selector.setEllipseColor(getResources().getColor(R.color.EllipsesColor));
-    			selector.setLineColor(getResources().getColor(R.color.LinesColor));
     		}
     		
     		
@@ -301,6 +297,9 @@ public class PerspectiveActivity extends Activity {
     	
     }
 
+    public void setImageFilter(int filterID) {
+    	 setImageFilter(filterID, false);
+    }
 }
 
 
