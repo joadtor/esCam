@@ -3,7 +3,6 @@ package com.joadtor.escam;
 import org.opencv.android.OpenCVLoader;
 import org.opencv.android.Utils;
 import org.opencv.core.Mat;
-import org.opencv.core.Size;
 import org.opencv.imgproc.Imgproc;
 
 import android.annotation.SuppressLint;
@@ -24,20 +23,21 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.TableRow;
 import android.widget.Toast;
 
 import com.joadtor.escam.component.BetterPopupWindow;
 import com.joadtor.escam.component.Selector;
 
+import com.joadtor.escam.tools.ImageFilter;
+
 
 public class PerspectiveActivity extends Activity {
 	
-	private static final int IMAGE_MAX_SIZE = 1920;
+
 	private static final int PROCESS_OK = 1313;
 	
 	private static final int FILE_OK = 95;
@@ -46,10 +46,10 @@ public class PerspectiveActivity extends Activity {
 	private static final int NO_FILTER = 13001;
 	private static final int BINARIZE = 13002;
 	private static final int BIN_TOZERO = 13003;
+	private static final int NIBLACK = 13004;
+	private static final int SAUVOLA = 13005;
 	
-	private Uri mImgUri;
-	private Bitmap mBitmap;
-	private Boolean mTurned = false;
+	private Mat mMat;
 	private int mFilter;
 	
 	static {
@@ -198,6 +198,14 @@ public class PerspectiveActivity extends Activity {
     			setImageFilter(BIN_TOZERO);
     			mFilter = BIN_TOZERO;
     		}
+    		else if(b.getId() == R.id.niblack) {
+    			setImageFilter(NIBLACK);
+    			mFilter = NIBLACK;
+    		}
+    		else if(b.getId() == R.id.sauvola) {
+    			setImageFilter(SAUVOLA);
+    			mFilter = SAUVOLA;
+    		}
     		
     		this.dismiss();
     	}
@@ -207,6 +215,8 @@ public class PerspectiveActivity extends Activity {
 	
     public void setImageFilter(int filterID, boolean first)
     {
+    	Bitmap mBitmap = null;
+    	
     	if (filterID == NO_FILTER){
     		if(!first) Toast.makeText(getApplicationContext(), getResources().getString(R.string.no_filter), Toast.LENGTH_SHORT).show();
         	    		
@@ -232,19 +242,20 @@ public class PerspectiveActivity extends Activity {
             mBitmap = gv.getPerspective();
     		
     		// Creating a Mat from a Bitmap
-    		Mat img_src = new Mat();
-    		Utils.bitmapToMat(mBitmap, img_src);
-    		
+    		mMat = new Mat();
+    		Utils.bitmapToMat(mBitmap, mMat);
+    	
     		// Greyscale
-    		Imgproc.cvtColor(img_src, img_src, Imgproc.COLOR_RGB2GRAY);
+    		Imgproc.cvtColor(mMat, mMat, Imgproc.COLOR_RGB2GRAY);
 
     		
     		// Binarizing
-    		Imgproc.threshold(img_src, img_src, 0, 255, Imgproc.THRESH_BINARY | Imgproc.THRESH_OTSU);
+    		Imgproc.threshold(mMat, mMat, 0, 255, Imgproc.THRESH_BINARY | Imgproc.THRESH_OTSU);
     		
     		// Creating a Bitmap from a Mat     
-    		mBitmap = Bitmap.createBitmap(img_src.cols(),  img_src.rows(), Bitmap.Config.ARGB_8888); 
-    		Utils.matToBitmap(img_src, mBitmap);
+    		onTrimMemory(TRIM_MEMORY_COMPLETE);
+    		mBitmap = Bitmap.createBitmap(mMat.cols(),  mMat.rows(), Bitmap.Config.RGB_565); 
+    		Utils.matToBitmap(mMat, mBitmap);
     		
     		BitmapDrawable myBitmap = new BitmapDrawable(mBitmap);
     		
@@ -267,18 +278,18 @@ public class PerspectiveActivity extends Activity {
             mBitmap = gv.getPerspective();
     		
     		// Creating a Mat from a Bitmap
-    		Mat img_src = new Mat();
-    		Utils.bitmapToMat(mBitmap, img_src);
-    		    		
+    		mMat = new Mat();
+    		Utils.bitmapToMat(mBitmap, mMat); 		
+    		
     		// Greyscale
-    		Imgproc.cvtColor(img_src, img_src, Imgproc.COLOR_RGB2GRAY);
+    		Imgproc.cvtColor(mMat, mMat, Imgproc.COLOR_RGB2GRAY);
     		
     		// Binarizing
-    		Imgproc.threshold(img_src, img_src, 0, 255, Imgproc.THRESH_TOZERO | Imgproc.THRESH_OTSU);
+    		Imgproc.threshold(mMat, mMat, 0, 255, Imgproc.THRESH_TOZERO | Imgproc.THRESH_OTSU);
     		
     		// Creating a Bitmap from a Mat     
-    		mBitmap = Bitmap.createBitmap(img_src.cols(),  img_src.rows(), Bitmap.Config.ARGB_8888); 
-    		Utils.matToBitmap(img_src, mBitmap);
+    		mBitmap = Bitmap.createBitmap(mMat.cols(),  mMat.rows(), Bitmap.Config.RGB_565); 
+    		Utils.matToBitmap(mMat, mBitmap);
     		
     		BitmapDrawable myBitmap = new BitmapDrawable(mBitmap);
     		
@@ -290,11 +301,48 @@ public class PerspectiveActivity extends Activity {
     			selector = (Selector) findViewById(R.id.view_select);
     			selector.setBackgroundDrawable(myBitmap);
     		}
-    		
-    		
-    	}
-
     	
+    	}
+    	if (filterID == NIBLACK){
+    		//if(!first) Toast.makeText(getApplicationContext(), getResources().getString(R.string.tozero_filter), Toast.LENGTH_SHORT).show();
+    		
+    		// Get from SharedResources
+            V_esCam gv = (V_esCam)getApplication();
+            mBitmap = ImageFilter.setTreshholdNiblack(gv.getPerspective(), 4, 0.2f); 		
+    		
+    		BitmapDrawable myBitmap = new BitmapDrawable(mBitmap);
+    		
+    		gv.setFilter(mBitmap);
+    		
+    		Selector selector = (Selector) findViewById(R.id.view_select);
+            
+    		if(myBitmap != null){
+    			selector = (Selector) findViewById(R.id.view_select);
+    			selector.setBackgroundDrawable(myBitmap);
+    		}
+    	
+    	}
+    	if (filterID == SAUVOLA){
+    		//if(!first) Toast.makeText(getApplicationContext(), getResources().getString(R.string.tozero_filter), Toast.LENGTH_SHORT).show();
+    		
+    		// Get from SharedResources
+            V_esCam gv = (V_esCam)getApplication();
+            mBitmap = ImageFilter.setTreshholdSauvola(gv.getPerspective(), 4, 0.2f, 0f, 255f); 		
+    		
+    		BitmapDrawable myBitmap = new BitmapDrawable(mBitmap);
+    		
+    		gv.setFilter(mBitmap);
+    		
+    		Selector selector = (Selector) findViewById(R.id.view_select);
+            
+    		if(myBitmap != null){
+    			selector = (Selector) findViewById(R.id.view_select);
+    			selector.setBackgroundDrawable(myBitmap);
+    		}
+    	
+    	}
+    	
+
     }
 
     public void setImageFilter(int filterID) {
