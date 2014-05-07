@@ -51,70 +51,82 @@ public final class R {
         public static final int ic_launcher=0x7f020005;
         public static final int icon=0x7f020006;
         public static final int icon_alg_test=0x7f020007;
-        public static final int icon_filter_bima=0x7f020008;
-        public static final int icon_filter_bima_s=0x7f020009;
-        public static final int icon_filter_bima_u=0x7f02000a;
-        public static final int icon_filter_bina=0x7f02000b;
-        public static final int icon_filter_bina_s=0x7f02000c;
-        public static final int icon_filter_bina_u=0x7f02000d;
-        public static final int icon_filter_wout=0x7f02000e;
-        public static final int icon_filter_wout_s=0x7f02000f;
-        public static final int icon_filter_wout_u=0x7f020010;
-        public static final int icon_home=0x7f020011;
-        public static final int icon_interalg_area=0x7f020012;
-        public static final int icon_interalg_area_s=0x7f020013;
-        public static final int icon_interalg_area_u=0x7f020014;
-        public static final int icon_interalg_bits2=0x7f020015;
-        public static final int icon_interalg_bits2_s=0x7f020016;
-        public static final int icon_interalg_bits2_u=0x7f020017;
-        public static final int icon_interalg_cubic=0x7f020018;
-        public static final int icon_interalg_cubic_s=0x7f020019;
-        public static final int icon_interalg_cubic_u=0x7f02001a;
-        public static final int icon_interalg_lanczos=0x7f02001b;
-        public static final int icon_interalg_lanczos_s=0x7f02001c;
-        public static final int icon_interalg_lanczos_u=0x7f02001d;
-        public static final int icon_interalg_linear=0x7f02001e;
-        public static final int icon_interalg_linear_s=0x7f02001f;
-        public static final int icon_interalg_linear_u=0x7f020020;
-        public static final int icon_interalg_max=0x7f020021;
-        public static final int icon_interalg_max_s=0x7f020022;
-        public static final int icon_interalg_max_u=0x7f020023;
-        public static final int icon_interalg_nearestn=0x7f020024;
-        public static final int icon_interalg_nearestn_s=0x7f020025;
-        public static final int icon_interalg_nearestn_u=0x7f020026;
-        public static final int icon_menu_cam=0x7f020027;
-        public static final int icon_menu_sd=0x7f020028;
-        public static final int icon_save=0x7f020029;
-        public static final int icon_settings_anim=0x7f02002a;
-        public static final int icon_settings_s=0x7f02002b;
-        public static final int icon_settings_u=0x7f02002c;
-        public static final int logo=0x7f02002d;
-        public static final int main_button_frame=0x7f02002e;
-        public static final int main_button_selection=0x7f02002f;
-        public static final int title_bg=0x7f020030;
-        public static final int title_logo=0x7f020031;
+        public static final int icon_filter_bicu=0x7f020008;
+        public static final int icon_filter_bicu_s=0x7f020009;
+        public static final int icon_filter_bicu_u=0x7f02000a;
+        public static final int icon_filter_bima=0x7f02000b;
+        public static final int icon_filter_bima_s=0x7f02000c;
+        public static final int icon_filter_bima_u=0x7f02000d;
+        public static final int icon_filter_bina=0x7f02000e;
+        public static final int icon_filter_bina_s=0x7f02000f;
+        public static final int icon_filter_bina_u=0x7f020010;
+        public static final int icon_filter_bini=0x7f020011;
+        public static final int icon_filter_bini_s=0x7f020012;
+        public static final int icon_filter_bini_u=0x7f020013;
+        public static final int icon_filter_bisa=0x7f020014;
+        public static final int icon_filter_bisa_s=0x7f020015;
+        public static final int icon_filter_bisa_u=0x7f020016;
+        public static final int icon_filter_wout=0x7f020017;
+        public static final int icon_filter_wout_s=0x7f020018;
+        public static final int icon_filter_wout_u=0x7f020019;
+        public static final int icon_home=0x7f02001a;
+        public static final int icon_interalg_area=0x7f02001b;
+        public static final int icon_interalg_area_s=0x7f02001c;
+        public static final int icon_interalg_area_u=0x7f02001d;
+        public static final int icon_interalg_bits2=0x7f02001e;
+        public static final int icon_interalg_bits2_s=0x7f02001f;
+        public static final int icon_interalg_bits2_u=0x7f020020;
+        public static final int icon_interalg_cubic=0x7f020021;
+        public static final int icon_interalg_cubic_s=0x7f020022;
+        public static final int icon_interalg_cubic_u=0x7f020023;
+        public static final int icon_interalg_lanczos=0x7f020024;
+        public static final int icon_interalg_lanczos_s=0x7f020025;
+        public static final int icon_interalg_lanczos_u=0x7f020026;
+        public static final int icon_interalg_linear=0x7f020027;
+        public static final int icon_interalg_linear_s=0x7f020028;
+        public static final int icon_interalg_linear_u=0x7f020029;
+        public static final int icon_interalg_max=0x7f02002a;
+        public static final int icon_interalg_max_s=0x7f02002b;
+        public static final int icon_interalg_max_u=0x7f02002c;
+        public static final int icon_interalg_nearestn=0x7f02002d;
+        public static final int icon_interalg_nearestn_s=0x7f02002e;
+        public static final int icon_interalg_nearestn_u=0x7f02002f;
+        public static final int icon_menu_cam=0x7f020030;
+        public static final int icon_menu_sd=0x7f020031;
+        public static final int icon_save=0x7f020032;
+        public static final int icon_settings_anim=0x7f020033;
+        public static final int icon_settings_s=0x7f020034;
+        public static final int icon_settings_u=0x7f020035;
+        public static final int logo=0x7f020036;
+        public static final int main_button_frame=0x7f020037;
+        public static final int main_button_selection=0x7f020038;
+        public static final int title_bg=0x7f020039;
+        public static final int title_logo=0x7f02003a;
     }
     public static final class id {
         public static final int about_text=0x7f0b0005;
-        public static final int area=0x7f0b0019;
-        public static final int bima=0x7f0b0022;
-        public static final int bina=0x7f0b0021;
-        public static final int bits2=0x7f0b001a;
+        public static final int area=0x7f0b001b;
+        public static final int bicu=0x7f0b0024;
+        public static final int bima=0x7f0b0025;
+        public static final int bina=0x7f0b0023;
+        public static final int bits2=0x7f0b001c;
         public static final int body=0x7f0b0003;
         public static final int cameraButton=0x7f0b0014;
-        public static final int cubic=0x7f0b001b;
+        public static final int cubic=0x7f0b001d;
         public static final int dec_size=0x7f0b000f;
+        public static final int dialog_layout=0x7f0b0019;
+        public static final int dialog_seekbar=0x7f0b001a;
         public static final int fileButton=0x7f0b0015;
         public static final int home=0x7f0b0013;
         public static final int inc_size=0x7f0b000e;
-        public static final int lanczos=0x7f0b001c;
-        public static final int linear=0x7f0b001d;
-        public static final int max=0x7f0b001e;
-        public static final int menu_about=0x7f0b0026;
-        public static final int menu_settings=0x7f0b0025;
-        public static final int nearestn=0x7f0b001f;
+        public static final int lanczos=0x7f0b001e;
+        public static final int linear=0x7f0b001f;
+        public static final int max=0x7f0b0020;
+        public static final int menu_about=0x7f0b0029;
+        public static final int menu_settings=0x7f0b0028;
+        public static final int nearestn=0x7f0b0021;
         public static final int newCamera=0x7f0b0000;
-        public static final int niblack=0x7f0b0023;
+        public static final int niblack=0x7f0b0026;
         public static final int ocv_text=0x7f0b0009;
         public static final int ok_button=0x7f0b0010;
         public static final int opencv_about=0x7f0b0007;
@@ -123,7 +135,7 @@ public final class R {
         public static final int options_bar=0x7f0b000d;
         public static final int path_text=0x7f0b0017;
         public static final int preview=0x7f0b0006;
-        public static final int sauvola=0x7f0b0024;
+        public static final int sauvola=0x7f0b0027;
         public static final int save_button=0x7f0b0018;
         public static final int save_button_frame=0x7f0b0016;
         public static final int title_bar=0x7f0b0001;
@@ -133,7 +145,7 @@ public final class R {
         public static final int turn_90=0x7f0b0011;
         public static final int view_select=0x7f0b000c;
         public static final int viewer=0x7f0b0004;
-        public static final int wout=0x7f0b0020;
+        public static final int wout=0x7f0b0022;
     }
     public static final class layout {
         public static final int activity_about=0x7f030000;
@@ -142,8 +154,9 @@ public final class R {
         public static final int activity_perspective=0x7f030003;
         public static final int activity_preferences=0x7f030004;
         public static final int activity_save=0x7f030005;
-        public static final int popup_file=0x7f030006;
-        public static final int popup_perspective=0x7f030007;
+        public static final int dialog_perspective=0x7f030006;
+        public static final int popup_file=0x7f030007;
+        public static final int popup_perspective=0x7f030008;
     }
     public static final class menu {
         public static final int activity_about=0x7f0a0000;
@@ -163,6 +176,7 @@ public final class R {
  Main 
          */
         public static final int app_name=0x7f070000;
+        public static final int binarize_custom_filter=0x7f07001a;
         public static final int binarize_filter=0x7f070019;
         /**   Home 
   Home 
@@ -172,9 +186,13 @@ public final class R {
         /**   Save 
   Save 
          */
-        public static final int button_save=0x7f07001b;
+        public static final int button_save=0x7f070020;
         public static final int dec=0x7f07000e;
-        public static final int image_saved=0x7f07001c;
+        public static final int dialog_cancel=0x7f07001f;
+        public static final int dialog_msg=0x7f07001d;
+        public static final int dialog_ok=0x7f07001e;
+        public static final int dialog_title=0x7f07001c;
+        public static final int image_saved=0x7f070021;
         public static final int increase=0x7f07000d;
         /**   File 
   File 
@@ -197,24 +215,24 @@ public final class R {
   Options Bar 
          */
         public static final int ok_button=0x7f07000c;
-        public static final int path=0x7f07001d;
-        public static final int pref_Filter=0x7f070023;
-        public static final int pref_Filter_sum=0x7f070022;
-        public static final int pref_Format=0x7f070025;
-        public static final int pref_Format_sum=0x7f070024;
-        public static final int pref_InterAlg=0x7f070021;
-        public static final int pref_InterAlg_sum=0x7f070020;
-        public static final int pref_Title_save=0x7f07001f;
+        public static final int path=0x7f070022;
+        public static final int pref_Filter=0x7f070028;
+        public static final int pref_Filter_sum=0x7f070027;
+        public static final int pref_Format=0x7f07002a;
+        public static final int pref_Format_sum=0x7f070029;
+        public static final int pref_InterAlg=0x7f070026;
+        public static final int pref_InterAlg_sum=0x7f070025;
+        public static final int pref_Title_save=0x7f070024;
         /**   Preferences 
   Preferences 
          */
-        public static final int pref_Title_scan=0x7f07001e;
+        public static final int pref_Title_scan=0x7f070023;
         public static final int title_activity_about=0x7f070002;
         public static final int title_activity_file=0x7f070003;
         public static final int title_activity_main=0x7f070001;
         public static final int title_activity_perspective=0x7f070004;
         public static final int title_activity_save=0x7f070005;
-        public static final int tozero_filter=0x7f07001a;
+        public static final int tozero_filter=0x7f07001b;
     }
     public static final class style {
         public static final int Animations=0x7f090007;

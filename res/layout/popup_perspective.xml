@@ -26,6 +26,17 @@
             android:drawableTop="@drawable/icon_filter_bina"
             android:minHeight="30dp"
             android:minWidth="30dp" />
+        
+        <Button
+            android:id="@+id/bicu"
+            android:layout_height="43dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_weight="1"
+            android:background="@null"
+            android:drawableTop="@drawable/icon_filter_bicu"
+            android:minHeight="30dp"
+            android:minWidth="30dp" />
 
         <Button
             android:id="@+id/bima"
@@ -41,8 +52,8 @@
 
     <TableRow
         android:layout_marginTop="10dp"
-        android:paddingLeft="25dp"
-        android:paddingRight="25dp" >
+        android:paddingLeft="50dp"
+        android:paddingRight="50dp" >
 
         <Button
             android:id="@+id/niblack"
@@ -51,7 +62,7 @@
             android:layout_marginRight="5dp"
             android:layout_weight="1"
             android:background="@null"
-            android:drawableTop="@drawable/icon_interalg_linear"
+            android:drawableTop="@drawable/icon_filter_bini"
             android:minHeight="30dp"
             android:minWidth="30dp" />
 
@@ -62,7 +73,7 @@
             android:layout_marginRight="5dp"
             android:layout_weight="1"
             android:background="@null"
-            android:drawableTop="@drawable/icon_interalg_max"
+            android:drawableTop="@drawable/icon_filter_bisa"
             android:minHeight="30dp"
             android:minWidth="30dp" />
     </TableRow>
