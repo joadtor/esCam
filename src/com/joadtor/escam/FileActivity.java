@@ -12,6 +12,7 @@ import org.opencv.imgproc.Imgproc;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.ActivityManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -42,7 +43,6 @@ import com.joadtor.escam.component.Selector;
 
 public class FileActivity extends Activity {
 	
-	private static final int IMAGE_MAX_SIZE = 2500;
 	private static final int PROCESS_OK = 1313;
 	
 	private static final int FILE_OK = 95;
@@ -184,12 +184,14 @@ public class FileActivity extends Activity {
 
 
 			int scale = 1;
-			if (o.outHeight > IMAGE_MAX_SIZE || o.outWidth > IMAGE_MAX_SIZE) {
-			        if (o.outWidth > o.outHeight) {
-			        scale = Math.round((float) o.outHeight / (float) IMAGE_MAX_SIZE);
-			        } else {
-			        scale = Math.round((float) o.outWidth / (float) IMAGE_MAX_SIZE);
-			        }
+			int MPX_image = o.outHeight * o.outWidth;
+			int memoryClass = ((ActivityManager) getSystemService(ACTIVITY_SERVICE)).getMemoryClass();
+			int MPX_allowed = 1060000* (memoryClass / 16); // 60000 for X.x cameras
+			
+			
+			while(MPX_image > MPX_allowed){
+				scale *= 2;
+				MPX_image/=4;
 			}
 
 			//Decode with inSampleSize

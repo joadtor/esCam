@@ -1,3 +1,19 @@
+## 07/05/2014
+
+Bugfixes:
+
+  - Fixed the way the main image is loaded and resized to avoid out of memory errors.
+
+Features:
+
+  - Added new filter with user defined threshold.
+
+## 05/05/2014
+
+Features:
+
+  - Added neural network tools for future tests.
+
 ## 24/04/2014
 
 Features:

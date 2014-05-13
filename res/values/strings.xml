@@ -45,7 +45,12 @@
 
     <string name="no_filter">Unfiltered image.</string>
     <string name="binarize_filter">Binarized image.</string>
+    <string name="binarize_custom_filter">Binarized image with user defined threshold.</string>
     <string name="tozero_filter">Mask binarized image.</string>
+    <string name="dialog_title">Threshold</string>
+    <string name="dialog_msg">Select threshold (0&#8211;255)</string>
+    <string name="dialog_ok">OK</string>
+    <string name="dialog_cancel">Cancel</string>
     
      <!--  Save -->
    

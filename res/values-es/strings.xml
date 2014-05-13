@@ -45,8 +45,13 @@
 
     <string name="no_filter">Imagen sin filtro.</string>
     <string name="binarize_filter">Imagen con filtro de binarizado.</string>
+    <string name="binarize_custom_filter">Imagen con filtro de binarizado con umbral definido por el usuario.</string>
     <string name="tozero_filter">Imagen con filtro de binarizado con máscara.</string>
-    
+    <string name="dialog_title">Umbral</string>
+    <string name="dialog_msg">Selecciona umbral (0&#8211;255)</string>
+    <string name="dialog_ok">OK</string>
+    <string name="dialog_cancel">Cancelar</string>
+     
      <!--  Save -->
    
     <string name="button_save">¡Guardar!</string>
@@ -58,6 +63,7 @@
     
     <string name="pref_Title_scan">Configuración de escaneo</string> 
     <string name="pref_Title_save">Configuración de guardado</string> 
+    
     <string name="pref_InterAlg_sum">Establece el algoritmo de interpolación que se usará por defecto.</string>
     <string name="pref_InterAlg">Algoritmo de Interpolación</string>
         

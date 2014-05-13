@@ -7,7 +7,9 @@ import org.opencv.imgproc.Imgproc;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
@@ -26,8 +28,10 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.SeekBar;
 import android.widget.TableRow;
 import android.widget.Toast;
+
 
 import com.joadtor.escam.component.BetterPopupWindow;
 import com.joadtor.escam.component.Selector;
@@ -48,10 +52,11 @@ public class PerspectiveActivity extends Activity {
 	private static final int BIN_TOZERO = 13003;
 	private static final int NIBLACK = 13004;
 	private static final int SAUVOLA = 13005;
+	private static final int BINARIZE_CUSTOM = 13006;
 	
 	private Mat mMat;
 	private int mFilter;
-	
+	private SeekBar mSBar = null;
 	static {
         if (!OpenCVLoader.initDebug())
             Log.d("ERROR", "Unable to load OpenCV");
@@ -206,6 +211,10 @@ public class PerspectiveActivity extends Activity {
     			setImageFilter(SAUVOLA);
     			mFilter = SAUVOLA;
     		}
+    		else if(b.getId() == R.id.bicu) {
+    			showDialog();
+    			mFilter = BINARIZE_CUSTOM;
+    		}
     		
     		this.dismiss();
     	}
@@ -341,6 +350,45 @@ public class PerspectiveActivity extends Activity {
     		}
     	
     	}
+    	if (filterID == BINARIZE_CUSTOM){
+    		if(!first) Toast.makeText(getApplicationContext(), getResources().getString(R.string.binarize_custom_filter), Toast.LENGTH_SHORT).show();
+    		
+    		// Get from SharedResources
+            V_esCam gv = (V_esCam)getApplication();
+            mBitmap = gv.getPerspective();
+    		
+    		// Creating a Mat from a Bitmap
+    		mMat = new Mat();
+    		Utils.bitmapToMat(mBitmap, mMat);
+    	
+    		// Greyscale
+    		Imgproc.cvtColor(mMat, mMat, Imgproc.COLOR_RGB2GRAY);
+    		
+    		// Check Threshold
+    		
+    		double threshold = mSBar.getProgress();
+    		
+    		// Binarizing
+    		Imgproc.threshold(mMat, mMat, threshold, 255, Imgproc.THRESH_BINARY);
+    		
+    		// Creating a Bitmap from a Mat     
+    		onTrimMemory(TRIM_MEMORY_COMPLETE);
+    		mBitmap = Bitmap.createBitmap(mMat.cols(),  mMat.rows(), Bitmap.Config.RGB_565); 
+    		Utils.matToBitmap(mMat, mBitmap);
+    		
+    		BitmapDrawable myBitmap = new BitmapDrawable(mBitmap);
+    		
+    		gv.setFilter(mBitmap);
+    		
+    		Selector selector = (Selector) findViewById(R.id.view_select);
+            
+    		if(myBitmap != null){
+    			selector = (Selector) findViewById(R.id.view_select);
+    			selector.setBackgroundDrawable(myBitmap);
+    		}
+    	
+    	}
+    	
     	
 
     }
@@ -348,6 +396,43 @@ public class PerspectiveActivity extends Activity {
     public void setImageFilter(int filterID) {
     	 setImageFilter(filterID, false);
     }
+    
+    public void showDialog(){
+		final AlertDialog.Builder alert = new AlertDialog.Builder(this); 
+
+		alert.setTitle(getString(R.string.dialog_title)); 
+		alert.setMessage(getString(R.string.dialog_msg)); 
+
+		LayoutInflater inflater = (LayoutInflater)this.getSystemService(LAYOUT_INFLATER_SERVICE);
+		View layout = inflater.inflate(R.layout.dialog_perspective, (ViewGroup)findViewById(R.id.dialog_layout));
+
+		
+
+		alert.setView(layout);
+		if (mSBar != null){
+			int bar_progress = mSBar.getProgress();
+			mSBar = (SeekBar)layout.findViewById(R.id.dialog_seekbar);
+			mSBar.setProgress(bar_progress);
+		}
+		else mSBar = (SeekBar)layout.findViewById(R.id.dialog_seekbar);
+
+		alert.setPositiveButton(getString(R.string.dialog_ok),new DialogInterface.OnClickListener() 
+		{ 
+	        public void onClick(DialogInterface dialog,int id)  
+	        { 
+	            setImageFilter(BINARIZE_CUSTOM);
+	        } 
+	    }); 
+		
+		alert.setNegativeButton(getString(R.string.dialog_cancel),new DialogInterface.OnClickListener() 
+		{ 
+	        public void onClick(DialogInterface dialog,int id)  
+	        { 
+	        } 
+	    }); 
+
+	    alert.show(); 
+	}
 }
 
 
