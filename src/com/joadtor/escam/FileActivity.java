@@ -124,7 +124,36 @@ public class FileActivity extends Activity {
         	@Override
         	public void onClick(View v) {
         		PopupWindow dw = new PopupWindow(v);
-        		dw.setLayoutResource(R.layout.popup_file);
+        		
+        		switch(mInterAlg){
+
+                case Imgproc.INTER_AREA:
+                	dw.setLayoutResource(R.layout.popup_file_area);
+                	break;
+                case Imgproc.INTER_BITS2:
+                	dw.setLayoutResource(R.layout.popup_file_bits2);
+                	break;
+                case Imgproc.INTER_CUBIC:
+                	dw.setLayoutResource(R.layout.popup_file_cubic);
+                	break;
+                case Imgproc.INTER_LANCZOS4:
+                	dw.setLayoutResource(R.layout.popup_file_lanczos);
+                	break;
+                case Imgproc.INTER_LINEAR:
+                	dw.setLayoutResource(R.layout.popup_file_linear);
+                	break;
+                case Imgproc.INTER_MAX:
+                	dw.setLayoutResource(R.layout.popup_file_max);
+                	break;
+                case Imgproc.INTER_NEAREST:
+                	dw.setLayoutResource(R.layout.popup_file_nearest);
+                	break;
+                default:
+                	dw.setLayoutResource(R.layout.popup_file);
+                	break;
+
+                }
+        		
         		dw.showLikeQuickAction(0,10);
         	}
         });

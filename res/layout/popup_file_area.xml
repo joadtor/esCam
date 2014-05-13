@@ -1,51 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
 <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content" >
+    android:layout_height="wrap_content"
+    tools:ignore="ButtonStyle" >
 
     <TableRow>
 
         <Button
-            android:id="@+id/wout"
+            android:id="@+id/area"
             android:layout_height="43dp"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
             android:layout_weight="1"
             android:background="@null"
-            android:drawableTop="@drawable/icon_filter_wout"
+            android:drawableTop="@drawable/icon_interalg_area_s"
             android:minHeight="30dp"
             android:minWidth="30dp" />
 
         <Button
-            android:id="@+id/bina"
+            android:id="@+id/bits2"
             android:layout_height="43dp"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
             android:layout_weight="1"
             android:background="@null"
-            android:drawableTop="@drawable/icon_filter_bina"
-            android:minHeight="30dp"
-            android:minWidth="30dp" />
-        
-        <Button
-            android:id="@+id/bicu"
-            android:layout_height="43dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_weight="1"
-            android:background="@null"
-            android:drawableTop="@drawable/icon_filter_bicu"
+            android:drawableTop="@drawable/icon_interalg_bits2"
             android:minHeight="30dp"
             android:minWidth="30dp" />
 
         <Button
-            android:id="@+id/bima"
+            android:id="@+id/cubic"
             android:layout_height="43dp"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
             android:layout_weight="1"
             android:background="@null"
-            android:drawableTop="@drawable/icon_filter_bima"
+            android:drawableTop="@drawable/icon_interalg_cubic"
+            android:minHeight="30dp"
+            android:minWidth="30dp" />
+
+        <Button
+            android:id="@+id/lanczos"
+            android:layout_height="43dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_weight="1"
+            android:background="@null"
+            android:drawableTop="@drawable/icon_interalg_lanczos"
             android:minHeight="30dp"
             android:minWidth="30dp" />
     </TableRow>
@@ -56,35 +58,35 @@
         android:paddingRight="25dp" >
 
         <Button
-            android:id="@+id/niblack"
+            android:id="@+id/linear"
             android:layout_height="43dp"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
             android:layout_weight="1"
             android:background="@null"
-            android:drawableTop="@drawable/icon_filter_bini"
+            android:drawableTop="@drawable/icon_interalg_linear"
             android:minHeight="30dp"
             android:minWidth="30dp" />
 
         <Button
-            android:id="@+id/sauvola"
+            android:id="@+id/max"
             android:layout_height="43dp"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
             android:layout_weight="1"
             android:background="@null"
-            android:drawableTop="@drawable/icon_filter_bisa"
+            android:drawableTop="@drawable/icon_interalg_max"
             android:minHeight="30dp"
             android:minWidth="30dp" />
-        
+
         <Button
-            android:id="@+id/neural"
+            android:id="@+id/nearestn"
             android:layout_height="43dp"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
             android:layout_weight="1"
             android:background="@null"
-            android:drawableTop="@drawable/icon_filter_neural"
+            android:drawableTop="@drawable/icon_interalg_nearestn"
             android:minHeight="30dp"
             android:minWidth="30dp" />
     </TableRow>
