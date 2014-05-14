@@ -32,10 +32,8 @@ import android.widget.SeekBar;
 import android.widget.TableRow;
 import android.widget.Toast;
 
-
 import com.joadtor.escam.component.BetterPopupWindow;
 import com.joadtor.escam.component.Selector;
-
 import com.joadtor.escam.tools.ImageFilter;
 
 
@@ -53,6 +51,7 @@ public class PerspectiveActivity extends Activity {
 	private static final int NIBLACK = 13004;
 	private static final int SAUVOLA = 13005;
 	private static final int BINARIZE_CUSTOM = 13006;
+	private static final int NEURAL = 13007;
 	
 	private Mat mMat;
 	private int mFilter;
@@ -215,6 +214,10 @@ public class PerspectiveActivity extends Activity {
     			showDialog();
     			mFilter = BINARIZE_CUSTOM;
     		}
+    		else if(b.getId() == R.id.neural) {
+    			setImageFilter(NEURAL);
+    			mFilter = NEURAL;
+    		}
     		
     		this.dismiss();
     	}
@@ -316,9 +319,9 @@ public class PerspectiveActivity extends Activity {
     		//if(!first) Toast.makeText(getApplicationContext(), getResources().getString(R.string.tozero_filter), Toast.LENGTH_SHORT).show();
     		
     		// Get from SharedResources
-            V_esCam gv = (V_esCam)getApplication();
-            mBitmap = ImageFilter.setTreshholdNiblack(gv.getPerspective(), 4, 0.2f); 		
-    		
+            V_esCam gv = (V_esCam)getApplication();                        
+            mBitmap = ImageFilter.setTreshholdNiblack(gv.getPerspective(), 4, 0.2f); 	
+	   		
     		BitmapDrawable myBitmap = new BitmapDrawable(mBitmap);
     		
     		gv.setFilter(mBitmap);
@@ -388,6 +391,25 @@ public class PerspectiveActivity extends Activity {
     		}
     	
     	}
+    	if (filterID == NEURAL){
+    		//if(!first) Toast.makeText(getApplicationContext(), getResources().getString(R.string.binarize_custom_filter), Toast.LENGTH_SHORT).show();
+    		
+    		// Get from SharedResources
+            V_esCam gv = (V_esCam)getApplication();
+            mBitmap = setNeuralNetwork(gv.getPerspective()); 		
+    		
+    		BitmapDrawable myBitmap = new BitmapDrawable(mBitmap);
+    		
+    		gv.setFilter(mBitmap);
+    		
+    		Selector selector = (Selector) findViewById(R.id.view_select);
+            
+    		if(myBitmap != null){
+    			selector = (Selector) findViewById(R.id.view_select);
+    			selector.setBackgroundDrawable(myBitmap);
+    		}
+    	
+    	}
     	
     	
 
@@ -433,6 +455,11 @@ public class PerspectiveActivity extends Activity {
 
 	    alert.show(); 
 	}
+    public Bitmap setNeuralNetwork(Bitmap src){
+    	
+    	
+    	return src;
+    }
 }
 
 

@@ -178,4 +178,5 @@ public class ImageFilter {
 		// http://en.wikipedia.org/wiki/Grayscale	
 		return (int) (0.2126*Color.red(color) + 0.7152*Color.green(color) + 0.0722*Color.blue(color));
 	}
+	
 }

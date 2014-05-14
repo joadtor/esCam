@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content" >
+
+	<TableRow>
+		<Button
+			android:layout_height="43dp"
+			android:layout_weight="1"
+			android:id="@+id/area"
+			android:drawableTop="@drawable/icon_interalg_area"
+			android:background="@null"
+			android:layout_marginRight="5dp"
+			android:layout_marginLeft="5dp"
+			android:minWidth="30dp"
+			android:minHeight="30dp"
+			 />
+		<Button
+			android:layout_height="43dp"
+			android:layout_weight="1"
+			android:id="@+id/bits2"
+			android:drawableTop="@drawable/icon_interalg_bits2"
+			android:background="@null"
+			android:layout_marginRight="5dp"
+			android:layout_marginLeft="5dp"
+			android:minWidth="30dp"
+			android:minHeight="30dp"
+			 />
+		<Button
+			android:layout_height="43dp"
+			android:layout_weight="1"
+			android:id="@+id/cubic"
+			android:drawableTop="@drawable/icon_interalg_cubic"
+			android:background="@null"
+			android:layout_marginRight="5dp"
+			android:layout_marginLeft="5dp"
+			android:minWidth="30dp"
+			android:minHeight="30dp"
+			 />
+		<Button
+			android:layout_height="43dp"
+			android:layout_weight="1"
+			android:id="@+id/lanczos"
+			android:drawableTop="@drawable/icon_interalg_lanczos"
+			android:background="@null"
+			android:layout_marginRight="5dp"
+			android:layout_marginLeft="5dp"
+			android:minWidth="30dp"
+			android:minHeight="30dp"
+			 />
+	</TableRow>
+	<TableRow android:layout_marginTop="10dp"
+	    android:paddingLeft="25dp"
+	    android:paddingRight="25dp" >
+
+		<Button
+			android:layout_height="43dp"
+			android:layout_weight="1"
+			android:id="@+id/linear"
+			android:drawableTop="@drawable/icon_interalg_linear"
+			android:background="@null"
+			android:layout_marginRight="5dp"
+			android:layout_marginLeft="5dp"
+			android:minWidth="30dp"
+			android:minHeight="30dp"
+			 />
+		<Button
+			android:layout_height="43dp"
+			android:layout_weight="1"
+			android:id="@+id/max"
+			android:drawableTop="@drawable/icon_interalg_max_s"
+			android:background="@null"
+			android:layout_marginRight="5dp"
+			android:layout_marginLeft="5dp"
+			android:minWidth="30dp"
+			android:minHeight="30dp"
+			 />
+		<Button
+			android:layout_height="43dp"
+			android:layout_weight="1"
+			android:id="@+id/nearestn"
+			android:drawableTop="@drawable/icon_interalg_nearestn"
+			android:background="@null"
+			android:layout_marginRight="5dp"
+			android:layout_marginLeft="5dp"
+			android:minWidth="30dp"
+			android:minHeight="30dp"
+			 />
+
+	</TableRow>
+</TableLayout>

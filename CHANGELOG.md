@@ -1,3 +1,10 @@
+## 13/05/2014
+
+Features:
+
+  - Added neural network filter button for tests.
+  - Added a glow informing which interpolation algorithm is selected.
+
 ## 07/05/2014
 
 Bugfixes:
