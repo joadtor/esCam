@@ -1,5 +1,13 @@
 package com.joadtor.escam;
 
+import java.io.BufferedReader;
+import java.io.ByteArrayOutputStream;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
+
 import org.opencv.android.OpenCVLoader;
 import org.opencv.android.Utils;
 import org.opencv.core.Mat;
@@ -16,6 +24,8 @@ import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.Bitmap.Config;
+import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
@@ -35,6 +45,7 @@ import android.widget.Toast;
 import com.joadtor.escam.component.BetterPopupWindow;
 import com.joadtor.escam.component.Selector;
 import com.joadtor.escam.tools.ImageFilter;
+import com.joadtor.escam.tools.Network;
 
 
 public class PerspectiveActivity extends Activity {
@@ -455,10 +466,85 @@ public class PerspectiveActivity extends Activity {
 
 	    alert.show(); 
 	}
+    
+    
+    
     public Bitmap setNeuralNetwork(Bitmap src){
     	
+    	Log.d("Neural Network", "Intialize Neural");
     	
-    	return src;
+    	int N = 2;
+    	
+    	InputStream ins = getResources().openRawResource(
+    		getResources().getIdentifier("raw/v2", "raw", getPackageName()));
+    	
+    	BufferedReader br = null;
+    	
+    	try {
+			br = new BufferedReader(new InputStreamReader(ins, "UTF-8"));
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	
+    	Bitmap rslt = Bitmap.createBitmap(src.getWidth(), src.getHeight(), Config.ARGB_4444);
+    	
+    	Network myNet = new Network(br);
+		double[] v = new double[(2*N+1)*(2*N+1)];
+		long startTime = System.currentTimeMillis();
+		float[][] m = new float[src.getHeight()][src.getWidth()];
+		for(int y = 0; y < src.getHeight(); y++) {
+			for(int x = 0; x < src.getWidth(); x++) {
+				m[y][x] = 1.0f-((float)ImageFilter.getGreyscaleFromColor(src.getPixel(x, y))/255);
+			}
+			Log.i("NN", String.format("Row %d/%d", y, src.getHeight()));
+		}
+    	
+		
+    	for(int y = 0; y < src.getHeight(); y++) {
+			for(int x = 0; x < src.getWidth(); x++) {
+				int index = 0;
+				
+				for (int dx = -N; dx <= N; ++dx ) {
+					for (int dy = -N; dy <= N; ++dy) {
+						int ix = x + dx;
+						int iy = y + dy;
+						if (ix >= 0 && ix < src.getWidth()
+							&& iy >= 0 && iy < src.getHeight())
+						 v[index] = m[iy][ix];
+						else
+							v[index] = 0.0;
+						
+						index++;
+					}
+					
+				}
+				// Computing the NN output
+				double []out = myNet.computeNetwork(v);
+				int value = (int)((1.0 - out[0])*255);
+				/*if(value < 128 ) {
+					rslt.setPixel(x, y, Color.BLACK);
+					
+				}
+				else {
+					rslt.setPixel(x, y, Color.WHITE);
+					
+				}*/
+				rslt.setPixel(x, y, Color.rgb(value, value,value));
+				//int alpha = Color.alpha(value);
+				
+				
+				
+			}
+			Log.i("NN", String.format("Row 2 %d/%d", y, src.getHeight()));
+			
+    	}
+    	long stopTime = System.currentTimeMillis();
+    	long elapsedTime = stopTime - startTime;
+    	Log.i("NN", String.format("%d", elapsedTime)); 
+		
+    	// String str = readTextFile(ins);
+    	return rslt;
     }
 }
 

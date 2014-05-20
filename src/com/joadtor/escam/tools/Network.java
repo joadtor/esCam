@@ -118,6 +118,7 @@ public class Network implements IAction {
     /// <param name="stream">Stream file reader correctly open</param>
     public Network(BufferedReader stream)
     {
+    	this.actionList = new ArrayList<IAction>();
         this.readfromFile(stream);
 
     }
@@ -186,25 +187,29 @@ public class Network implements IAction {
     		Layer ant = null;
 
     		//Avoid lua code
-    		do {
-
-    			line = reader.readLine().trim(); 
-
-    		} while (line.startsWith("#") || line.startsWith("matrix"));
+//    		do {
+//
+//    			line = reader.readLine().trim(); 
+//
+//    		} while (line.startsWith("#") || line.startsWith("matrix")
+//    				|| line.startsWith("[[") || line.startsWith(",")
+//    				);
+    		// Read two lines
 
 
     		for (int i = 0; i < ncamps; i+=2) {
 
     			int nNeurons = Integer.valueOf(camps[i]);
     			String type = camps[i + 1];
-
+    			type.replace("\n","");
     			if (ant == null) {
     				// Is the first layer
     				this.input = addLayer(nNeurons, Layer.stringToActivation(type));
     				ant = this.input;
     				continue;
     			}
-
+        		reader.readLine();
+        		reader.readLine();
     			Layer newLayer = new Layer(nNeurons, Layer.stringToActivation(type));
 
     			Connections newConnection = new Connections(ant, newLayer);
