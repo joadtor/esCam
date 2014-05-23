@@ -52,14 +52,33 @@
         android:layout_height="fill_parent"
         android:orientation="vertical" >
 
-        <Button
-            android:id="@+id/cameraButton"
-            style="@style/mainButton"
+        <RelativeLayout
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:drawableTop="@drawable/icon_menu_cam"
-            android:onClick="onClickMainMenu"
-            android:text="@string/button_from_camera" />
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5" >
+
+            <ImageButton
+                android:id="@+id/cameraButton"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:background="@drawable/main_button_selection"
+                android:padding="20dp"
+                android:scaleType="fitCenter"
+                android:onClick="onClickMainMenu"
+                android:src="@drawable/icon_menu_cam" />
+
+            <TextView
+                android:id="@+id/textCam"
+                style="@style/mainButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:paddingTop="60dp"
+                android:text="@string/button_from_camera"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        </RelativeLayout>
 
         <ImageView
             android:id="@+id/preview"
@@ -67,14 +86,34 @@
             android:layout_height="wrap_content"
             android:src="@drawable/bg_separation_line" />
 
-        <Button
-            android:id="@+id/fileButton"
-            style="@style/mainButton"
+        <RelativeLayout
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:drawableTop="@drawable/icon_menu_sd"
-            android:onClick="onClickMainMenu"
-            android:text="@string/button_from_file" />
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5" >
+
+            <ImageButton
+                android:id="@+id/fileButton"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:background="@drawable/main_button_selection"
+                android:padding="20dp"
+                android:scaleType="fitCenter"
+                android:onClick="onClickMainMenu"
+                android:src="@drawable/icon_menu_sd" />
+
+            <TextView
+                android:id="@+id/TextSd"
+                style="@style/mainButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:paddingTop="60dp"
+                android:text="@string/button_from_file"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        </RelativeLayout>
+
     </LinearLayout>
 
 </LinearLayout>
