@@ -208,8 +208,10 @@ public class Network implements IAction {
     				ant = this.input;
     				continue;
     			}
-        		reader.readLine();
-        		reader.readLine();
+    			
+    			reader.readLine();
+    			reader.readLine();
+    			
     			Layer newLayer = new Layer(nNeurons, Layer.stringToActivation(type));
 
     			Connections newConnection = new Connections(ant, newLayer);

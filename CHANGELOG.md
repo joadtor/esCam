@@ -1,3 +1,10 @@
+## 25/05/2014
+
+Features:
+
+  - Added neural network as binarization filter.
+
+
 ## 13/05/2014
 
 Features:

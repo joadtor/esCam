@@ -132,7 +132,8 @@ public class Connections implements IAction {
     				this.weights[i][j] = Double.valueOf(sWeight.replace(',','.'));
     			}
     		}
-    		file.read(); // \n
+    		//file.read(); // \n
+    		file.readLine();
     	} catch (IOException e) {
     		e.printStackTrace();
     	}
