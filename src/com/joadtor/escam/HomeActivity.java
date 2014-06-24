@@ -68,7 +68,11 @@ public class HomeActivity extends Activity {
 		} if (itemId == R.id.menu_settings) {
 			startActivity (new Intent(getApplicationContext(), PreferencesActivity.class));
 			return true;
-		} else {
+		} if (itemId == R.id.menu_help) {
+			Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://users.dsic.upv.es/~mcastro/esCam/index.html"));
+			startActivity(intent);
+			return true;
+		}	else {
 			return super.onOptionsItemSelected(item);
 		}
     }

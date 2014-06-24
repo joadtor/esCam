@@ -15,6 +15,7 @@
     <string name="button_from_camera">Imagen desde cámara</string>
     <string name="button_from_file">Imagen desde fichero</string>
     <string name="menu_settings">Opciones</string>
+    <string name="menu_help">Ayuda</string>
     <string name="menu_about">Acerca de esCam</string>
     
     <!--  About -->

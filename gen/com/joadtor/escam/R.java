@@ -126,7 +126,8 @@ public final class R {
         public static final int lanczos=0x7f0c0020;
         public static final int linear=0x7f0c0021;
         public static final int max=0x7f0c0022;
-        public static final int menu_about=0x7f0c002c;
+        public static final int menu_about=0x7f0c002d;
+        public static final int menu_help=0x7f0c002c;
         public static final int menu_settings=0x7f0c002b;
         public static final int nearestn=0x7f0c0023;
         public static final int neural=0x7f0c002a;
@@ -182,18 +183,18 @@ public final class R {
         public static final int v2=0x7f050000;
     }
     public static final class string {
-        public static final int _180=0x7f080010;
-        public static final int _90=0x7f08000f;
+        public static final int _180=0x7f080011;
+        public static final int _90=0x7f080010;
         /**   About 
   About 
          */
-        public static final int about_text=0x7f08000a;
+        public static final int about_text=0x7f08000b;
         /**  Main 
  Main 
          */
         public static final int app_name=0x7f080000;
-        public static final int binarize_custom_filter=0x7f08001a;
-        public static final int binarize_filter=0x7f080019;
+        public static final int binarize_custom_filter=0x7f08001b;
+        public static final int binarize_filter=0x7f08001a;
         /**   Home 
   Home 
          */
@@ -202,53 +203,54 @@ public final class R {
         /**   Save 
   Save 
          */
-        public static final int button_save=0x7f080020;
-        public static final int dec=0x7f08000e;
-        public static final int dialog_cancel=0x7f08001f;
-        public static final int dialog_msg=0x7f08001d;
-        public static final int dialog_ok=0x7f08001e;
-        public static final int dialog_title=0x7f08001c;
-        public static final int image_saved=0x7f080021;
-        public static final int increase=0x7f08000d;
+        public static final int button_save=0x7f080021;
+        public static final int dec=0x7f08000f;
+        public static final int dialog_cancel=0x7f080020;
+        public static final int dialog_msg=0x7f08001e;
+        public static final int dialog_ok=0x7f08001f;
+        public static final int dialog_title=0x7f08001d;
+        public static final int image_saved=0x7f080022;
+        public static final int increase=0x7f08000e;
         /**   File 
   File 
          */
-        public static final int inter_area=0x7f080011;
-        public static final int inter_bits2=0x7f080012;
-        public static final int inter_cubic=0x7f080013;
-        public static final int inter_lanczos4=0x7f080014;
-        public static final int inter_linear=0x7f080015;
-        public static final int inter_max=0x7f080016;
-        public static final int inter_nearest=0x7f080017;
-        public static final int menu_about=0x7f080009;
+        public static final int inter_area=0x7f080012;
+        public static final int inter_bits2=0x7f080013;
+        public static final int inter_cubic=0x7f080014;
+        public static final int inter_lanczos4=0x7f080015;
+        public static final int inter_linear=0x7f080016;
+        public static final int inter_max=0x7f080017;
+        public static final int inter_nearest=0x7f080018;
+        public static final int menu_about=0x7f08000a;
+        public static final int menu_help=0x7f080009;
         public static final int menu_settings=0x7f080008;
         /**   Perspective 
   Perspective 
          */
-        public static final int no_filter=0x7f080018;
-        public static final int ocv_text=0x7f08000b;
+        public static final int no_filter=0x7f080019;
+        public static final int ocv_text=0x7f08000c;
         /**   Options Bar 
   Options Bar 
          */
-        public static final int ok_button=0x7f08000c;
-        public static final int path=0x7f080022;
-        public static final int pref_Filter=0x7f080028;
-        public static final int pref_Filter_sum=0x7f080027;
-        public static final int pref_Format=0x7f08002a;
-        public static final int pref_Format_sum=0x7f080029;
-        public static final int pref_InterAlg=0x7f080026;
-        public static final int pref_InterAlg_sum=0x7f080025;
-        public static final int pref_Title_save=0x7f080024;
+        public static final int ok_button=0x7f08000d;
+        public static final int path=0x7f080023;
+        public static final int pref_Filter=0x7f080029;
+        public static final int pref_Filter_sum=0x7f080028;
+        public static final int pref_Format=0x7f08002b;
+        public static final int pref_Format_sum=0x7f08002a;
+        public static final int pref_InterAlg=0x7f080027;
+        public static final int pref_InterAlg_sum=0x7f080026;
+        public static final int pref_Title_save=0x7f080025;
         /**   Preferences 
   Preferences 
          */
-        public static final int pref_Title_scan=0x7f080023;
+        public static final int pref_Title_scan=0x7f080024;
         public static final int title_activity_about=0x7f080002;
         public static final int title_activity_file=0x7f080003;
         public static final int title_activity_main=0x7f080001;
         public static final int title_activity_perspective=0x7f080004;
         public static final int title_activity_save=0x7f080005;
-        public static final int tozero_filter=0x7f08001b;
+        public static final int tozero_filter=0x7f08001c;
     }
     public static final class style {
         public static final int Animations=0x7f0a0007;
