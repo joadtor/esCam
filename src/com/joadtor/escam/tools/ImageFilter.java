@@ -6,7 +6,7 @@ import android.graphics.Color;
 
 // https://github.com/pakozm/april-ann/blob/master/packages/imaging/binarization_filter/c_src/binarization.cc
 public class ImageFilter {
-	public static Bitmap setTreshholdSauvola(Bitmap src, int windowRadius, float k, float minThreshold, float maxThreshold) {
+	public static Bitmap setTreshholdNiblackComplex(Bitmap src, int windowRadius, float k, float minThreshold, float maxThreshold) {
 		
 		Bitmap rslt = Bitmap.createBitmap(src.getWidth(), src.getHeight(), Config.ARGB_4444);
 		
@@ -173,7 +173,82 @@ public class ImageFilter {
 		
 		return rslt;
 	}
-	
+	public static Bitmap setTreshholdSauvola(Bitmap src, int windowRadius, float k, float r){
+		
+		
+		Bitmap rslt = Bitmap.createBitmap(src.getWidth(), src.getHeight(), Config.ARGB_4444);
+		
+		// Image Integral Matrix
+		float[][] M = new float[src.getWidth()][src.getHeight()];
+		
+		// Square Image Integral
+		float[][] M2 = new float[src.getWidth()][src.getHeight()];
+	    
+
+	    int env=windowRadius;
+	    for(int y = 0; y < src.getHeight(); y++)
+	        for (int x = 0; x < src.getWidth(); x++){
+	            M[x][y]= (float) getGreyscaleFromColor(src.getPixel(x, y));
+	            M2[x][y]= (float) M[x][y]*M[x][y];
+	            if(x>0 && y>0){
+	                M[x][y]+=M[x-1][y]+M[x][y-1]-M[x-1][y-1];
+	                M2[x][y]+=M2[x-1][y]+M2[x][y-1]-M2[x-1][y-1];
+	            }
+	            else if(x>0 && !(y>0)){
+	                M[x][y]+=M[x-1][y];
+	                M2[x][y]+=M2[x-1][y];
+	            }
+	            else if(!(x>0) && y>0){
+	                M[x][y]+=M[x][y-1];
+	                M2[x][y]+=M2[x][y-1];
+	            }
+
+	        }
+
+	    for(int y = 0; y < src.getHeight(); y++){
+	        for (int x = 0; x < src.getWidth(); x++){
+	            int limInf , limSup , limRight,limLeft = 0;
+	            int area = 1;
+
+	            // We take the limits of the enviroment
+	            if(x-env < 0){
+	                limLeft = 0;
+	            }
+	            else limLeft=x-env;
+
+	            if(x+env >= src.getWidth()){
+	                limRight = src.getWidth()-1;
+	            }
+	            else limRight=x+env;
+
+	            if(y-env < 0){
+	                limSup = 0;
+	            }
+	            else limSup=y-env;
+
+	            if(y+env >= src.getHeight()){
+	                limInf = src.getHeight()-1;
+	            }
+	            else limInf=y+env;
+
+	            area = (limInf-limSup+1)*(limRight-limLeft+1);
+
+	            //Calculate the mean
+	            double mean = (float)(M[limLeft][limSup]+ M[limRight][limInf] - M[limLeft][limInf] -M[limRight][limSup])/area;
+	            double mean2 = (float)(M2[limLeft][limSup]+ M2[limRight][limInf] - M2[limLeft][limInf] -M2[limRight][limSup])/area;
+	            //Compute the Standar Deviacion square(Mean^2-mean2)
+	            double sd = (float) Math.sqrt(mean2-mean*mean);
+
+	            //Apply the Threshold T=mean-0.2sd
+	            float T = (float)(mean *(1+k*(sd/(r-1))));
+	            if( getGreyscaleFromColor(src.getPixel(x, y)) < T ) rslt.setPixel(x, y, Color.BLACK);
+	            else rslt.setPixel(x, y, Color.WHITE);
+	        }
+	    }		
+		
+		
+		return rslt;
+	}
 	
 	
 	public static int getGreyscaleFromColor(int color) {

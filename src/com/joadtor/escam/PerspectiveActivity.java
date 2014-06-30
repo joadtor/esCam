@@ -328,7 +328,7 @@ public class PerspectiveActivity extends Activity {
     		
     		// Get from SharedResources
             V_esCam gv = (V_esCam)getApplication();                        
-            mBitmap = ImageFilter.setTreshholdNiblack(gv.getPerspective(), 4, 0.2f); 	
+            mBitmap = ImageFilter.setTreshholdNiblack(gv.getPerspective(), 10, 0.2f); 	
 	   		
     		BitmapDrawable myBitmap = new BitmapDrawable(mBitmap);
     		
@@ -347,7 +347,7 @@ public class PerspectiveActivity extends Activity {
     		
     		// Get from SharedResources
             V_esCam gv = (V_esCam)getApplication();
-            mBitmap = ImageFilter.setTreshholdSauvola(gv.getPerspective(), 4, 0.2f, 0f, 255f); 		
+            mBitmap = ImageFilter.setTreshholdSauvola(gv.getPerspective(), 10, 0.2f,128); 		
     		
     		BitmapDrawable myBitmap = new BitmapDrawable(mBitmap);
     		
